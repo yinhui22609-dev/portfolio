@@ -1,6 +1,7 @@
 import { CaseImage, CaseIntro, CaseSection, PendingMaterial } from "./case-primitives";
 import { ProductFramework } from "./product-framework";
 import { keystoneJourney, keystoneValidation } from "@/lib/keystone-process";
+import { assetPath } from "@/lib/asset-path";
 import styles from "./keystone-case.module.css";
 
 const base = "/images/projects/keystone/";
@@ -17,11 +18,13 @@ export function KeystoneCase() {
   return <article className={styles.case} aria-labelledby="project-heading">
     <header className={styles.hero}>
       <div className={styles.identity}><span className={styles.monogram}>K</span><span>KEYSTONE<br /><small>AI RESEARCH COPILOT</small></span><span className={styles.progress}>PERSONAL PROJECT / 迭代中</span></div>
-      <CaseIntro kicker="AI PRODUCT OWNER / 0 → 1" title="Keystone" summary="AI 多文档研究助手。从研究需求出发，设计可控制、可回查、可交付的 AI 工作流。">
+      <div className={styles.heroIntro}><CaseIntro kicker="KEYSTONE / AI PRODUCT DESIGN" title="AI多文档研究助手" summary="让 AI 研究，从信息检索走向有据可查。">
+        <p className={styles.heroDescription}>从研究需求出发，设计可控制、可回查、可交付的 AI 工作流，连接资料管理、研究问答、对比分析与引用核验。</p>
         <p className={styles.ownerNote}>AI 产品负责人（个人项目） · AI 工作流设计<br />负责需求收敛、产品规划、交互方案与迭代验收，借助 Codex 推进实现。</p>
-      </CaseIntro>
+        <ul className={styles.heroHighlights} aria-label="产品设计主线"><li>资料管理</li><li>研究问答</li><li>对比分析</li><li>引用核验</li></ul>
+      </CaseIntro></div>
       <div className={styles.heroStage}>
-        <div className={styles.workspace}><CaseImage src={base + "research-workspace.jpg"} alt="Keystone 现有研究问答工作台与资料侧栏" width={1440} height={900} priority caption="实际工作台 · 产品方案的界面落点" /></div>
+        <div className={styles.workspace}><CaseImage src={base + "research-workspace-clear.png"} alt="Keystone 真实清晰工作台，包含资料侧栏、研究问答、资料库、研究分析表与研究简报导航" width={1919} height={814} priority caption="新提供的真实工作台截图 · 完整保留原始界面，可放大查看" sizes="(max-width: 639px) 94vw, (max-width: 1023px) 88vw, 72vw" /></div>
         <div className={styles.heroAside}><span>THE PRODUCT QUESTION</span><h2>如何让答案，<br />成为可用的研究？</h2><p>重点不止生成文本，而是把资料范围、证据、人工判断与最终交付连接起来。</p><div><span>当前阶段</span><strong>本地核心流程已验证<br />公网发布准备中</strong></div></div>
       </div>
     </header>
@@ -31,6 +34,12 @@ export function KeystoneCase() {
       { problem: "回答看似完整，仍难判断是否有依据。", decision: "把结论、引用和原文位置作为同一条证据链；资料不足或冲突显式保留。", evidence: "引用抽屉、原文范围约束、冲突与资料不足测试。"},
       { problem: "能生成内容，不代表能完成研究交付。", decision: "从问答延伸至分析、简报和导出，并分别定义验收条件。", evidence: "正式导出样本、中文 PDF 分页修复、阶段验收记录。"},
     ]} validation="需求研究以桌面分析形成假设，用户访谈尚待补充；本地接口与有限样本验证不等同于公网发布或用户价值已经得到量化证明。" />
+
+    <CaseSection id="keystone-product-framework" eyebrow="PRODUCT FRAMEWORK / 0 → 1" title="把研究任务，组织成产品框架">
+      <p className={styles.frameworkLead}>从用户目标，到核心业务流程，再到功能模块与底层支撑。下图为新提供的产品框架原图，用于说明产品设计范围；图中的价值是设计目标，各项实现与验收状态仍以分阶段记录为准。</p>
+      <CaseImage className={styles.frameworkImage} src={base + "research-workbench-framework.png"} alt="Keystone AI研究工作台产品框架图：用户目标、核心业务流程、功能模块、底层支撑与产品价值" width={1448} height={1086} caption="用户提供的原始产品框架图 · 不裁切，可打开原图核对" sizes="(max-width: 639px) 90vw, (max-width: 1023px) 86vw, 900px" />
+      <dl className={styles.frameworkSummary}><div><dt>用户目标</dt><dd>上传自己的资料，完成研究分析，形成可引用的研究结论。</dd></div><div><dt>业务闭环</dt><dd>新建项目、上传与解析、问答、分析表、简报、导出。</dd></div><div><dt>功能支撑</dt><dd>原文依据、历史与版本、引用校验、访客隔离和预算保护。</dd></div></dl>
+    </CaseSection>
 
     <CaseSection id="keystone-zero-to-one" eyebrow="01 / FROM 0 TO 1" title="把制作过程，拆成七个产品阶段">
       <p className={styles.lead}>每一步都回答一个产品问题，再落到具体交付与验收。以下路径依据实际需求研究、PRD、开发清单及 Codex 阶段记录整理。</p>
@@ -67,12 +76,12 @@ export function KeystoneCase() {
     <CaseSection id="keystone-output" eyebrow="05 / DELIVERY" title="让研究结果，形成正式交付">
       <div className={styles.outputGrid}>
         <CaseImage src={base + "brief-page-1.png"} alt="Keystone 真实研究简报第1页，包含结论与编号来源" width={849} height={1200} caption="已有正式导出样本 · 完整第1页" sizes="(max-width: 639px) 90vw, 45vw" />
-        <div className={styles.outputCopy}><span>FROM EVIDENCE TO DELIVERABLE</span><h3>保留结论，<br />也保留来路。</h3><p>简报承接研究问题、结论与来源，让结果能继续编辑、核对和交付。现有文件展示真实输出，不补造新的产品界面。</p><ul><li>目标：让回答进入后续分析与交付</li><li>方案：统一研究内容、来源与版本关系</li><li>验收：检查导出结构、中文排版与引用对应</li></ul><a href={base + "research-brief.pdf"} target="_blank" rel="noreferrer">查看原始导出样本 ↗ <small>PDF · 已提供版本</small></a></div>
+        <div className={styles.outputCopy}><span>FROM EVIDENCE TO DELIVERABLE</span><h3>保留结论，<br />也保留来路。</h3><p>简报承接研究问题、结论与来源，让结果能继续编辑、核对和交付。现有文件展示真实输出，不补造新的产品界面。</p><ul><li>目标：让回答进入后续分析与交付</li><li>方案：统一研究内容、来源与版本关系</li><li>验收：检查导出结构、中文排版与引用对应</li></ul><a href={assetPath(base + "research-brief.pdf")} target="_blank" rel="noreferrer">查看原始导出样本 ↗ <small>PDF · 已提供版本</small></a></div>
       </div>
     </CaseSection>
 
     <CaseSection id="keystone-artifacts" eyebrow="06 / PROCESS MATERIALS" title="制作依据与后续迭代">
-      <div className={styles.artifactLinks}><a href={base + "product-requirements.pdf"} target="_blank" rel="noreferrer">产品需求文档 ↗<span>定位、流程、能力边界与阶段范围</span></a><div><strong>实际制作记录</strong><span>需求研究 → 竞品分析 → PRD → 分阶段开发 → 功能整合 → AI 验证 → 发布准备</span></div></div>
+      <div className={styles.artifactLinks}><a href={assetPath(base + "product-requirements.pdf")} target="_blank" rel="noreferrer">产品需求文档 ↗<span>定位、流程、能力边界与阶段范围</span></a><div><strong>实际制作记录</strong><span>需求研究 → 竞品分析 → PRD → 分阶段开发 → 功能整合 → AI 验证 → 发布准备</span></div></div>
       <details className={styles.archive}><summary>查看界面材料与后续补充项</summary><div className={styles.pendingGrid}><PendingMaterial title="更完整的过程界面" note="后续补充资料库、研究分析表、原文核验与结果编辑的清晰真实截图；现有工作台已在封面展示。" /><PendingMaterial title="用户价值验证" note="继续补充目标用户访谈、真实研究任务与可用性观察，不以接口测试替代用户验证。" /></div></details>
     </CaseSection>
 

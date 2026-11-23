@@ -17,7 +17,7 @@
 | `public/references/02-yanyu/**` | 堰遇，手机UI／展板及PPT | 品牌封面、首页／服务／发现／文创／我的、景区与地图 | 逐图及展板裁切见分表 |
 | `public/references/03-zhijian/**` | 年画，网页／小游戏机制图／三展板及最终版PPT | 文化科普产品框架、内容结构、套印输入与状态、真实界面、页末完整展板 | 当前详情页封面为 `电脑画卷.png`，原件复制至 `nianhua/cover-scroll.png`，无裁切；其余逐项见分表 |
 | `public/references/05-shanhai/**` | 山海，真实网页与设计报告 | 首页封面、长页内容、地域地图、详情、文化与路线 | 逐图见分表 |
-| `public/references/04-keystone/download.jpg` 1440×900 | Keystone，真实研究问答工作台截图 | 产品封面和界面展示（只展示一次，不充当多模块截图） | 否，复制为 `public/images/projects/keystone/research-workspace.jpg` |
+| `public/references/04-keystone/download.png` 1919×814 | Keystone，最新真实研究问答工作台截图 | 首页入口与项目版头（不充当多模块截图） | 原文件复制为 `public/images/projects/keystone/research-workspace-clear.png`；旧 JPEG 保留但不再引用 |
 | `public/references/04-keystone/研究简报-正式导出.pdf` 3页 | Keystone，实际交付文件 | 导出结果展示、原PDF下载 | 第1页完整渲染为 `brief-page-1.png`，不裁切；保留PDF |
 | `public/references/04-keystone/AI-Knowledge-Research-Copilot-PRD-V1.0.pdf` 16页 | Keystone，产品需求文档 | 设计定位、工作流与能力边界参考、原PDF下载 | 不作为已实现功能证据，不裁切 |
 
@@ -47,6 +47,12 @@
 
 后续用户授权参考实际Codex制作过程，已读取对应记录及 `D:/产品` 的需求、开发和阶段验收文档，补充可核对的0–1产品过程。当前准确状态为：本地核心流程有阶段验证，整体开发迭代／公网发布准备中，尚未正式公开；数据清理与完整删除等仍需开发与验收。原工作台图与简报仍按原样使用。详细边界见 [过程证据](docs/keystone-process-evidence.md)。
 
-素材缺口：Keystone 清晰工作台原图、资料库管理、多文档对比、引用核验等独立界面与最终访问链接；山海的 AI 协作过程记录若没有真实文档／过程图，不编造聊天截图。其余项目的缺项随逐图审阅记录更新。
+素材缺口：Keystone 资料库管理、多文档对比、引用核验等独立界面与最终访问链接；山海的 AI 协作过程记录若没有真实文档／过程图，不编造聊天截图。其余项目的缺项随逐图审阅记录更新。
 
-Keystone 当前 JPEG 虽为 1440×900，原始文字已经存在模糊。页面与预览保留该素材，不通过重绘、锐化或 AI 替换伪造细节。导出 PDF 第1页为完整渲染，图像 849×1200。
+Keystone 当前使用新提供的 1919×814 PNG；旧 1440×900 JPEG 保留，不通过重绘、锐化或 AI 替换伪造细节。导出 PDF 第1页为完整渲染，图像 849×1200。
+
+## 首页入口与 GitHub Pages 资源
+
+首页五个入口按十月、堰遇青城、纸间风华、Keystone、山海辽藏排序，分别引用 `shiyue/hand-mockup.webp`、`yanyu/cover-mockups.webp`、`nianhua/cover-scroll.png`、`keystone/research-workspace-clear.png`、`liaoning/cover.png`，均位于 `public/images/projects/`，不采用整张布局参考图。新增的十月信息架构、年画内容脉络与低保真、Keystone 产品框架均原文件复制至相应项目目录，来源及尺寸见各项目素材分表。
+
+网页中的图片、PDF、装饰背景统一经 `src/lib/asset-path.ts` 添加部署基础路径；页面路由继续由 `next/link` 处理。`npm run check:export` 会核对全部导出页面的实际引用、大小写、静态文件存在性与 Git 跟踪状态，避免仅本地有图、线上缺图。

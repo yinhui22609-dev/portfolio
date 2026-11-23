@@ -6,3 +6,5 @@ out/
 !.env.example
 .DS_Store
 artifacts/
+# Local design references; publish selected originals from images/projects instead.
+/public/references/

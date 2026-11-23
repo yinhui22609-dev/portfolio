@@ -1,4 +1,6 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
+import { assetPath } from "@/lib/asset-path";
 import { CaseImage } from "./case-primitives";
 import styles from "./nianhua-hero.module.css";
 
@@ -6,13 +8,13 @@ const images = "/images/projects/nianhua/";
 
 export function NianhuaHero({ siteUrl }: { siteUrl: string }) {
   return <>
-    <header className={styles.hero} aria-labelledby="project-heading" data-nianhua-hero>
+    <header className={styles.hero} aria-labelledby="project-heading" data-nianhua-hero style={{ "--hero-paper": `url("${assetPath(`${images}hero-paper.png`)}")`, "--hero-branch": `url("${assetPath(`${images}hero-branch.png`)}")`, "--hero-landscape": `url("${assetPath(`${images}hero-landscape.png`)}")` } as CSSProperties}>
       <div className={styles.paper} aria-hidden="true" />
       <div className={styles.branch} aria-hidden="true" />
       <div className={styles.landscape} aria-hidden="true" />
 
       <div className={styles.brand}>
-        <Image src={`${images}hero-seal.png`} width={174} height={174} alt="" className={styles.brandSeal} />
+        <Image src={assetPath(`${images}hero-seal.png`)} width={174} height={174} alt="" className={styles.brandSeal} />
         <div><p>纸间风华 · 木版年画数字科普网</p><span>Woodblock New Year Painting<br />Digital Science Popularization Website</span></div>
       </div>
 
@@ -20,7 +22,7 @@ export function NianhuaHero({ siteUrl }: { siteUrl: string }) {
         <div className={styles.titleGroup}>
           <div className={styles.titleComposition}>
             <h1 id="project-heading" className={styles.heroTitle} aria-label="纸间风华">{Array.from("纸间风华", (character, index) => <span key={character} className={styles[`character${index + 1}`]} aria-hidden="true">{character}</span>)}</h1>
-            <Image src={`${images}hero-seal.png`} width={174} height={174} alt="" className={styles.titleSeal} />
+            <Image src={assetPath(`${images}hero-seal.png`)} width={174} height={174} alt="" className={styles.titleSeal} />
           </div>
           <p className={styles.subtitle}>木版年画<br /><strong>数字科普网站设计</strong></p>
         </div>

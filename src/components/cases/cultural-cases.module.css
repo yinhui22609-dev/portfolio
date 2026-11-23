@@ -28,6 +28,34 @@
 .modelEvidence { display: grid; grid-template-columns: 1fr 1.3fr; gap: 50px; align-items: center; }
 .modelEvidence h3, .modelNote h3 { margin: 0 0 18px; font-size: 27px; line-height: 1.6; font-weight: 500; }
 .modelEvidence p, .modelNote p { max-width: 780px; margin: 0; font-size: 16px; line-height: 1.95; color: var(--case-muted); }
+.designBridge { display: grid; grid-template-columns: .9fr 1.2fr; gap: 35px; align-items: center; }
+.bridgeLabel { margin: 0 0 12px; font-size: 12px; line-height: 1.7; color: var(--case-accent); }
+.designBridge h3 { margin: 0 0 17px; font-size: 25px; line-height: 1.5; font-weight: 500; }
+.designBridge p:not(.bridgeLabel), .designBridge li { font-size: 15px; line-height: 1.9; color: var(--case-muted); }
+.designBridge p:not(.bridgeLabel) { margin: 0; }
+.designBridge ol { margin: 18px 0 0; padding-left: 21px; list-style-type: decimal; }
+.designBridge li + li { margin-top: 5px; }
+.designBridge > figure { --case-image-height: min(35svh, 300px); }
+.case .lowfiImage { --case-image-height: min(62svh, 500px); }
+.case .identityArtwork { --case-image-height: 230px; max-width: 440px; margin-inline: auto; }
+.identityArtwork [data-zoomed] { background: #f7f1e6; }
+.liaoningHero { --case-muted: #c2d0c4; display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: clamp(25px, 4vw, 58px); min-height: 440px; padding: 35px 38px; border-block: 1px solid #43614e; background: #173a31; color: #f5f2e8; }
+.liaoningHeroCopy { min-width: 0; }
+.heroContext { margin: 0 0 18px; color: #d1d9c7; font-size: 13px; letter-spacing: .1em; line-height: 1.6; }
+.heroContext > span { display: block; margin-top: 6px; color: #acc2af; font-family: Arial, sans-serif; font-size: 10px; line-height: 1.4; letter-spacing: .12em; }
+.liaoningHeroTitle { margin: 0; color: #fffdf3; font-size: clamp(52px, 6.1vw, 80px); line-height: 1.2; font-weight: 600; letter-spacing: -.04em; white-space: nowrap; }
+.heroBadge { display: inline-block; margin-top: 16px; padding: 5px 13px; border: 1px solid #a8b69a88; border-radius: 25px; background: #365340; color: #e2e7d7; font-size: 12px; line-height: 1.6; }
+.heroStatement { margin: 22px 0 14px; font-family: "Songti SC", SimSun, serif; font-size: clamp(23px, 2.3vw, 30px); line-height: 1.6; color: #f7f3e4; }
+.heroDescription { max-width: 430px; margin: 0; font-size: 15px; line-height: 1.9; color: #c8d3c6; }
+.heroTopics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 24px 0 0; }
+.heroTopics > span { padding-top: 10px; border-top: 1px solid #9bab8b88; font-size: 13px; line-height: 1.6; white-space: nowrap; }
+.liaoningHero .visit { margin-top: 25px; padding-block: 11px; background: #dfd2b0; color: #19392c; }
+.liaoningHero .visit:hover { background: #f5ecd3; }
+.liaoningHeroVisual { min-width: 0; padding: 16px 0; }
+.heroImageLabel { display: block; margin-bottom: 13px; color: #bccdbb; font-size: 12px; letter-spacing: .08em; line-height: 1.6; }
+.liaoningHeroVisual > figure { --case-image-height: min(42svh, 345px); }
+.liaoningHeroVisual > figure > button { padding: 5px; border: 1px solid #c7bfa3; background: #dfd4b7; }
+.heroImageNote { margin: 25px 0 0; color: #d3ddc9; font-family: "Songti SC", SimSun, serif; font-size: 19px; line-height: 1.7; letter-spacing: .05em; text-align: right; }
 .imagePair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 3vw, 44px); align-items: start; }
 .full { grid-column: 1 / -1; }
 .printSection { background: #f2e4da; }
@@ -117,6 +145,14 @@
   .implementation { margin-top: 27px; gap: 35px; }
 }
 @media (max-width: 1023px) {
+  .liaoningHero { gap: 25px; padding: 28px; }
+  .liaoningHeroTitle { font-size: 54px; }
+  .heroContext { margin-bottom: 14px; }
+  .heroStatement { font-size: 24px; margin-top: 18px; }
+  .heroDescription { font-size: 14px; }
+  .heroTopics { gap: 7px; }
+  .heroTopics > span { font-size: 12px; }
+  .heroImageNote { font-size: 16px; }
   .problemGrid { gap: 35px; }
   .knowledgeLine { gap: 16px; }
   .knowledgeLine h3 { font-size: 19px; }
@@ -128,6 +164,22 @@
   .implementation, .boundaryGrid { gap: 35px; }
 }
 @media (max-width: 639px) {
+  .liaoningHero { grid-template-columns: minmax(0, 1fr); min-height: 0; padding: 25px 22px; gap: 24px; }
+  .liaoningHeroTitle { font-size: clamp(50px, 15vw, 62px); }
+  .heroContext { font-size: 12px; margin-bottom: 16px; }
+  .heroBadge { margin-top: 12px; }
+  .heroStatement { font-size: 24px; margin-block: 19px 14px; }
+  .heroStatement br { display: none; }
+  .heroDescription { font-size: 14px; line-height: 1.85; }
+  .heroTopics { margin-top: 20px; gap: 10px; }
+  .heroTopics > span { font-size: 12px; }
+  .liaoningHero .visit { margin-top: 22px; }
+  .liaoningHeroVisual { padding: 0; }
+  .heroImageLabel { margin-bottom: 10px; }
+  .heroImageNote { font-size: 15px; margin-top: 15px; text-align: left; letter-spacing: 0; }
+  .designBridge { grid-template-columns: minmax(0, 1fr); gap: 25px; }
+  .designBridge > figure { --case-image-height: 100000px; }
+  .case .identityArtwork { --case-image-height: 220px; }
   .meta { font-size: 12px; gap: 8px 14px; margin-top: 24px; }
   .meta > span + span { padding-left: 0; border: 0; }
   .visit { margin-top: 24px; gap: 16px; padding-inline: 17px; }

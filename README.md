@@ -14,9 +14,28 @@ npm run dev
 ```powershell
 npm run typecheck
 npm run build
-npm start
 node --experimental-strip-types --test tests/radial-geometry.test.mjs tests/radial-hover.test.mjs
 ```
+
+## GitHub Pages 自动发布
+
+线上地址为 <https://yinhui22609-dev.github.io/portfolio/>。向 `main` 推送代码和实际使用的素材后，唯一的 `.github/workflows/deploy.yml` 会自动安装依赖、检查 TypeScript、导出静态页面、验证资源并发布 `out/`。仓库 Pages 来源使用 GitHub Actions，不再需要手动上传静态文件或更新旧 `docs/` 导出副本。
+
+发布时设置 `DEPLOY_BASE_PATH=/portfolio` 与 `NEXT_PUBLIC_BASE_PATH=/portfolio`。`next.config.ts` 将基础路径统一传给客户端，`assetPath()` 负责图片、PDF 与装饰背景；`next/link` 自行处理内部页面路径，不重复添加前缀。新增素材放到 `public/images/projects/<项目>/`，通过 Git 提交；`public/references/` 仅为本地参考，不作为页面资源。
+
+在 PowerShell 本地复现发布构建：
+
+```powershell
+$env:DEPLOY_BASE_PATH = "/portfolio"
+$env:NEXT_PUBLIC_BASE_PATH = "/portfolio"
+npm run typecheck
+npm run build
+npm run check:export
+```
+
+资源检查会核对七个路由、HTML/CSS 中的资源和导航、文件名大小写以及 Git 跟踪状态。新增资源需先 `git add` 再运行检查。静态导出不使用 `next start`；开发预览继续使用 `npm run dev`（先移除上述两个环境变量以访问域名根目录）。
+
+构建后的 `postbuild` 会写入 `.nojekyll`，并为 Next 16.4 在 Windows 生成的嵌套路由预取文件补齐浏览器需要的点分文件名；Linux Actions 上保持框架原有输出，不修改源码或原始资源。
 
 ## 已有内容
 

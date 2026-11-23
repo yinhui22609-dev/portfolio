@@ -1,10 +1,20 @@
 import type { ReactNode } from "react";
-import { CaseImage, CaseIntro, CaseSection, PendingMaterial } from "./case-primitives";
+import { CaseImage, CaseSection, PendingMaterial } from "./case-primitives";
 import { ProductFramework } from "./product-framework";
 import styles from "./mobile-cases.module.css";
 
 type Screen = { file: string; title: string; note?: string; width?: number; height?: number };
 type PathStep = { title: string; text: string };
+
+function HeroSymbol({ type }: { type: "cycle" | "tools" | "community" | "record" }) {
+  const paths = {
+    cycle: <><rect x="4" y="6" width="20" height="19" rx="2" /><path d="M9 3v6m10-6v6M4 12h20m-14 4h2m5 0h2m-9 4h2m5 0h2" /></>,
+    tools: <><path d="M14 25s10-7 10-14a6 6 0 0 0-10-4 6 6 0 0 0-10 4c0 7 10 14 10 14Z" /><path d="M14 10v7m-3-3.5h6" /></>,
+    community: <><circle cx="14" cy="8" r="4" /><path d="M7 25v-6a7 7 0 0 1 14 0v6M5 6a4 4 0 0 0 0 8m18-8a4 4 0 0 1 0 8M3 25v-5a5 5 0 0 1 2-4m20 0a5 5 0 0 1 2 4v5" /></>,
+    record: <><path d="M14 26V13m0 7c-6 0-10-3-10-8 6 0 10 3 10 8Zm0-5c6 0 10-3 10-8-6 0-10 3-10 8Z" /><ellipse cx="14" cy="7" rx="3" ry="5" /></>,
+  };
+  return <svg viewBox="0 0 30 30" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" strokeLinejoin="round">{paths[type]}</svg>;
+}
 
 const shiyueStates = [
   { file: "state-cycle", title: "经期", input: "日期与周期信息", content: "日历与经期记录", note: "通过经期与周期设置，建立记录的基础信息。" },
@@ -30,14 +40,26 @@ function DesignArchive({ title, description, children }: { title: string; descri
 
 export function ShiyueCase() {
   return <article className={`${styles.case} ${styles.shiyue}`} aria-labelledby="project-heading">
-    <div className={styles.hero}>
-      <div className={styles.heroCopy}>
-        <CaseIntro kicker="OCTOBER / C-END MOBILE CONCEPT" title="十月" summary="母婴社区 App 产品与 UI 交互设计">
-          <p className={styles.heroDescription}>以孕育阶段为组织线索，将内容、交流与记录放入一条可理解的使用路径。C 端移动应用概念设计。</p>
-        </CaseIntro>
+    <header className={[styles.projectHero, styles.octoberHero].join(" ")}>
+      <div className={styles.heroTopline}><span>PROJECT / 01</span><i aria-hidden="true" /><span>产品与 UI 交互设计</span></div>
+      <div className={styles.octoberContent}>
+        <div className={styles.octoberCopy}>
+          <div className={styles.octoberName}><h1 id="project-heading">十月</h1><span>母婴社区 App</span></div>
+          <p className={styles.brandPromise}>懂宝贝，更懂你。</p>
+          <p className={styles.brandDescription}>以孕育阶段为组织线索，将内容、交流与记录放入一条可理解的使用路径。</p>
+          <ul className={styles.octoberFeatures}>{([
+            ["cycle", "周期管理"], ["tools", "孕育工具"], ["community", "交流社区"], ["record", "成长记录"],
+          ] as const).map(([type, label]) => <li key={type}><span><HeroSymbol type={type} /></span><strong>{label}</strong></li>)}</ul>
+        </div>
+        <div className={styles.octoberStage} aria-label="十月原始界面组合">
+          <span className={styles.octoberDisc} aria-hidden="true" />
+          <div className={styles.octoberPhoneLeft}><CaseImage src="/images/projects/shiyue/nursery-stories.webp" alt="十月原始儿歌故事界面" width={750} height={1334} sizes="(max-width:639px) 29vw, 180px" priority /></div>
+          <div className={styles.octoberPhoneRight}><CaseImage src="/images/projects/shiyue/profile.webp" alt="十月原始个人中心界面" width={750} height={1334} sizes="(max-width:639px) 29vw, 180px" priority /></div>
+          <div className={styles.octoberPhoneCenter}><CaseImage src="/images/projects/shiyue/home.webp" alt="十月原始孕期首页界面" width={750} height={1334} sizes="(max-width:639px) 42vw, 240px" priority /></div>
+        </div>
       </div>
-      <CaseImage className={styles.shiyueCover} src="/images/projects/shiyue/cover-start.webp" alt="十月原始启动页手机样机，懂宝贝更懂你" width={735} height={1309} sizes="(max-width: 639px) 76vw, (max-width: 1023px) 38vw, 330px" priority />
-    </div>
+      <p className={styles.heroFootnote}>C 端移动应用概念设计 <span>状态 · 内容 · 交流 · 记录</span></p>
+    </header>
 
     <ProductFramework
       label="01 / PRODUCT DECISIONS"
@@ -62,6 +84,11 @@ export function ShiyueCase() {
         { title: "交流或记录", text: "按目的进入社区内容，或保存个人成长记录。" },
         { title: "回到个人信息", text: "从个人中心查看阶段资料与常用入口。" },
       ]} />
+    </CaseSection>
+
+    <CaseSection className={styles.section} id="shiyue-original-framework" eyebrow="ORIGINAL INFORMATION MAP" title="从状态分流，连接内容与记录。">
+      <p className={styles.sectionLead}>原始框架图将登录、当前状态与首页、社区、记录及个人中心连接起来。它说明状态如何成为内容分流的起点，与上方任务模型形成对应。</p>
+      <CaseImage className={styles.originalFramework} src="/images/projects/shiyue/product-information-map.png" alt="十月原始产品框架图：登录与当前状态连接四阶段表单，再分流至首页、社区、记录及个人中心" width={1530} height={1257} caption="原始产品框架 · 完整展示，点击查看细节" />
     </CaseSection>
 
     <CaseSection className={styles.section} id="shiyue-scope" eyebrow="03 / SCOPE & TRADE-OFFS" title="先把核心体验组织清楚。">
@@ -123,6 +150,7 @@ export function ShiyueCase() {
       </DesignArchive>
       <DesignArchive title="品牌视觉与原始样机" description="保留母婴线稿、应用图标与原始手持图。视觉表达服务于温和、清晰的内容阅读。">
         <div className={styles.shiyueVisual}><CaseImage className={styles.brandPoster} src="/images/projects/shiyue/brand-start.webp" alt="十月原始启动视觉，母婴线稿与粉色构图" width={750} height={1334} caption="原始启动视觉" /><div className={styles.visualCopy}><div className={styles.iconRow}><CaseImage className={styles.appIcon} src="/images/projects/shiyue/app-icon.webp" alt="十月原始应用图标" width={93} height={105} /><div><h3>粉色强调与母婴线稿</h3><p>以轻柔的视觉印象承接孕育内容，保留原始色彩、图标与界面细节。</p></div></div><PendingMaterial title="独立字体与组件规范" note="原始界面已展示，独立字体、字号与组件规范文件尚待补充。" /></div></div>
+        <CaseImage className={styles.launchArchive} src="/images/projects/shiyue/cover-start.webp" alt="十月原始启动页手机样机，懂宝贝更懂你" width={735} height={1309} caption="原始启动页样机" />
         <CaseImage className={styles.handMockup} src="/images/projects/shiyue/hand-mockup.webp" alt="十月原始手持手机样机，完整保留蓝紫色背景" width={1024} height={737} caption="原始手持样机 · 保留原始构图与底色" />
       </DesignArchive>
     </CaseSection>
@@ -131,10 +159,25 @@ export function ShiyueCase() {
 
 export function YanyuCase() {
   return <article className={`${styles.case} ${styles.yanyu}`} aria-labelledby="project-heading">
-    <div className={styles.hero}>
-      <div className={styles.heroCopy}><CaseIntro kicker="YAN YU QING CHENG / C-END MOBILE CONCEPT" title="堰遇青城" summary="智慧文旅 App UI 与交互设计"><p className={styles.heroDescription}>围绕游客的信息判断、现场服务与文化体验，组织都江堰旅游的移动端任务路径。C 端移动应用概念设计。</p></CaseIntro></div>
-      <CaseImage className={styles.yanyuCover} src="/images/projects/yanyu/cover-mockups.webp" alt="堰遇青城原展板中的启动页与首页双手机样机" width={1600} height={1549} priority />
-    </div>
+    <header className={[styles.projectHero, styles.qingchengHero].join(" ")}>
+      <div className={styles.heroTopline}><span>PROJECT / 02</span><i aria-hidden="true" /><span>智慧文旅 · 移动体验</span></div>
+      <div className={styles.qingchengContent}>
+        <div className={styles.qingchengCopy}>
+          <p className={styles.qingchengLocation}>都江堰 / 青城山</p>
+          <h1 id="project-heading">堰遇青城</h1>
+          <p className={styles.qingchengTag}>智慧文旅 App UI 与交互设计</p>
+          <p className={styles.qingchengPromise}>循水问山，遇见青城。</p>
+          <p className={styles.qingchengDescription}>从行前了解，到景区现场与文化体验，以清晰的信息和服务入口，连接一段完整的旅行。</p>
+        </div>
+        <div className={styles.qingchengStage} aria-label="堰遇青城原始首页与地图服务组合">
+          <span className={styles.qingchengRing} aria-hidden="true" />
+          <span className={styles.qingchengRoute} aria-hidden="true">山水之间</span>
+          <div className={styles.qingchengMapPhone}><CaseImage src="/images/projects/yanyu/service.webp" alt="堰遇青城原始地图与附近服务界面" width={1242} height={2208} sizes="(max-width:639px) 39vw, 210px" priority /></div>
+          <div className={styles.qingchengHomePhone}><CaseImage src="/images/projects/yanyu/home.webp" alt="堰遇青城原始首页界面，水润天府与都江堰地域内容" width={1242} height={2208} sizes="(max-width:639px) 46vw, 250px" priority /></div>
+        </div>
+      </div>
+      <div className={styles.qingchengJourney} aria-label="旅行体验的三个任务情境"><div><span>行前</span><strong>了解目的地</strong></div><div><span>现场</span><strong>找到导览与服务</strong></div><div><span>体验</span><strong>延伸地域文化</strong></div><p>C 端移动应用概念设计</p></div>
+    </header>
 
     <ProductFramework
       label="01 / PRODUCT DECISIONS"
@@ -210,6 +253,7 @@ export function YanyuCase() {
       <DesignArchive title="品牌、图标与视觉规范" description="保留原有地域图形、色彩与字体材料。所有内容来自原作品，不为界面补写未经提供的规范。">
         <div className={styles.designGrid}><div><h3 className={styles.subheading}>图标设计</h3><CaseImage src="/images/projects/yanyu/icons.webp" alt="堰遇青城原始导航与服务图标，包含山水桥梁、建筑与熊猫元素" width={1600} height={910} caption="来源：展板1 · icon 设计局部" /></div><div className={styles.designStack}><div><h3 className={styles.subheading}>色彩规范</h3><CaseImage src="/images/projects/yanyu/palette.webp" alt="堰遇青城原设计展板色彩规范与渐变用色" width={1600} height={378} caption="保留原展板色值标注" /></div><div><h3 className={styles.subheading}>字体示例</h3><CaseImage src="/images/projects/yanyu/typography.webp" alt="堰遇青城原设计展板字体示例，墨趣古风体与华文中宋" width={1600} height={275} caption="来源：展板1 · 字体规范局部" /></div></div></div>
         <div className={styles.logoStudy}><h3 className={styles.subheading}>Logo 元素分解</h3><CaseImage src="/images/projects/yanyu/logo-study.webp" alt="堰遇青城原始 logo 与飞鸟、桥及水道元素分解" width={1600} height={407} caption="来源：展板1 · logo 设计局部" /></div>
+        <CaseImage className={styles.originalCover} src="/images/projects/yanyu/cover-mockups.webp" alt="堰遇青城原展板的启动页与首页双手机样机" width={1600} height={1549} caption="原展板顶部双手机样机" />
         <CaseImage className={styles.startPoster} src="/images/projects/yanyu/start.webp" alt="堰遇青城原始山水启动页" width={1242} height={2208} caption="原始启动页" />
       </DesignArchive>
     </CaseSection>

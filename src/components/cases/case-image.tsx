@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { assetPath } from "@/lib/asset-path";
 import { motion, useReducedMotion } from "motion/react";
 import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import styles from "./case-primitives.module.css";
@@ -43,7 +44,7 @@ export function CaseImage({ src, alt, width, height, caption, priority = false, 
   return (
     <motion.figure className={`${styles.figure} ${className}`} style={{ "--case-image-ratio": width / height } as CSSProperties} initial={priority ? false : { opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.04 }} transition={{ duration: reduced ? 0 : 0.5, ease: "easeOut" }}>
       <button ref={trigger} type="button" className={styles.imageButton} onClick={() => setOpen(true)} aria-label={`放大查看：${alt}`} aria-haspopup="dialog">
-        <Image src={src} alt={alt} width={width} height={height} preload={priority} sizes={sizes} className={styles.image} />
+        <Image src={assetPath(src)} alt={alt} width={width} height={height} preload={priority} sizes={sizes} className={styles.image} />
         <span className={styles.zoomHint} aria-hidden="true">↗</span>
       </button>
       {caption && <figcaption className={styles.caption}>{caption}</figcaption>}
@@ -53,7 +54,7 @@ export function CaseImage({ src, alt, width, height, caption, priority = false, 
           <div className={styles.imageViewport} data-zoomed={zoomed}>
             {/* The original is only fetched when opened; no recreated product UI. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={src} alt={alt} width={width} height={height} style={zoomed ? { width: `${width}px`, maxWidth: "none", maxHeight: "none" } : undefined} />
+            <img src={assetPath(src)} alt={alt} width={width} height={height} style={zoomed ? { width: `${width}px`, maxWidth: "none", maxHeight: "none" } : undefined} />
           </div>
           <p className={styles.lightboxNote}>{caption || "原始作品图片"} · Esc 关闭{zoomed ? " · 可滚动查看完整原图" : ""}</p>
         </div>}

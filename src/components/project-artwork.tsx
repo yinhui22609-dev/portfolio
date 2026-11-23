@@ -1,11 +1,12 @@
 import type { Project } from "@/lib/projects";
+import { assetPath } from "@/lib/asset-path";
 
 export function ProjectArtwork({ project, large = false }: { project: Project; large?: boolean }) {
   if (project.image) {
     return (
       // Keep original artwork intact; contain rather than crop UI screenshots.
       // eslint-disable-next-line @next/next/no-img-element
-      <img className="project-artwork" src={project.image} alt={project.imageAlt} loading={large ? "eager" : "lazy"} />
+      <img className="project-artwork" src={assetPath(project.image)} alt={project.imageAlt} loading={large ? "eager" : "lazy"} />
     );
   }
 

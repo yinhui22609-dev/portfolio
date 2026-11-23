@@ -1,8 +1,8 @@
 .hero { position: relative; isolation: isolate; display: grid; grid-template-rows: auto 1fr auto; min-height: 480px; padding: 24px 32px 22px; overflow: hidden; background: #f3e9d8; border-block: 1px solid #b6535366; color: #352c22; }
 .paper, .branch, .landscape { position: absolute; z-index: -1; pointer-events: none; }
-.paper { inset: 0 0 auto; height: 74%; background: url('/images/projects/nianhua/hero-paper.png') center top / cover no-repeat; opacity: .7; mask-image: linear-gradient(#000 15%, transparent 100%); }
-.branch { top: 0; right: 0; width: 42%; height: 145px; background: url('/images/projects/nianhua/hero-branch.png') right top / contain no-repeat; mix-blend-mode: multiply; opacity: .65; mask-image: linear-gradient(270deg, #000 65%, transparent), linear-gradient(180deg, #000 25%, transparent); mask-composite: intersect; }
-.landscape { bottom: 0; left: 0; width: 48%; height: 205px; background: url('/images/projects/nianhua/hero-landscape.png') left bottom / cover no-repeat; mix-blend-mode: multiply; opacity: .37; mask-image: linear-gradient(0deg, #000 25%, transparent), linear-gradient(90deg, #000 45%, transparent); mask-composite: intersect; }
+.paper { inset: 0 0 auto; height: 74%; background: var(--hero-paper) center top / cover no-repeat; opacity: .7; mask-image: linear-gradient(#000 15%, transparent 100%); }
+.branch { top: 0; right: 0; width: 42%; height: 145px; background: var(--hero-branch) right top / contain no-repeat; mix-blend-mode: multiply; opacity: .65; mask-image: linear-gradient(270deg, #000 65%, transparent), linear-gradient(180deg, #000 25%, transparent); mask-composite: intersect; }
+.landscape { bottom: 0; left: 0; width: 48%; height: 205px; background: var(--hero-landscape) left bottom / cover no-repeat; mix-blend-mode: multiply; opacity: .37; mask-image: linear-gradient(0deg, #000 25%, transparent), linear-gradient(90deg, #000 45%, transparent); mask-composite: intersect; }
 .brand { position: relative; z-index: 1; display: flex; align-items: center; gap: 11px; width: fit-content; }
 .brandSeal { width: 37px; height: 37px; flex-shrink: 0; mix-blend-mode: multiply; }
 .brand p { margin: 0 0 3px; font-family: 'Songti SC', SimSun, serif; font-size: 12px; font-weight: 600; letter-spacing: .05em; }

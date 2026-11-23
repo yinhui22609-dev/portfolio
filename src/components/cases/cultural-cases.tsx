@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { CaseImage, CaseIntro, CaseSection, PendingMaterial } from "./case-primitives";
+import { CaseImage, CaseSection, PendingMaterial } from "./case-primitives";
 import { ProductFramework } from "./product-framework";
 import { NianhuaHero } from "./nianhua-hero";
 import styles from "./cultural-cases.module.css";
@@ -19,6 +19,25 @@ function EvidenceDetails({ title, count, children }: { title: string; count: str
   return <details className={styles.evidenceDetails}><summary>{title}<span>{count}</span></summary><div className={styles.evidenceContent}>{children}</div></details>;
 }
 
+function LiaoningHero() {
+  return <header className={styles.liaoningHero} aria-labelledby="project-heading" data-liaoning-hero>
+    <div className={styles.liaoningHeroCopy}>
+      <p className={styles.heroContext}>辽宁物产数字档案馆<span>LIAONING / DIGITAL ARCHIVE</span></p>
+      <h1 id="project-heading" className={styles.liaoningHeroTitle}>山海辽藏</h1>
+      <span className={styles.heroBadge}>地域文化内容产品</span>
+      <p className={styles.heroStatement}>以数字档案，<br />读懂一方山海。</p>
+      <p className={styles.heroDescription}>从 17 件物产出发，连接自然资源、地域文化与生长脉络，让浏览继续成为收藏与探索。</p>
+      <div className={styles.heroTopics}>{["物产档案", "地域线索", "成长叙事", "收藏路线"].map((topic) => <span key={topic}>{topic}</span>)}</div>
+      <VisitSite href={liaoningSite} />
+    </div>
+    <div className={styles.liaoningHeroVisual}>
+      <span className={styles.heroImageLabel}>真实网站界面</span>
+      <CaseImage src={`${liaoningImages}cover.png`} alt="山海辽藏真实首页，海岸平原山林与矿产四列摄影构成物产档案入口" width={1910} height={883} priority sizes="(max-width: 639px) 90vw, (max-width: 1023px) 52vw, 660px" caption="从自然到物产，从生成到记忆。" />
+      <p className={styles.heroImageNote}>一份档案，连接一段地方记忆。</p>
+    </div>
+  </header>;
+}
+
 export function NianhuaCase() {
   return (
     <article className={`${styles.case} ${styles.nianhua}`}>
@@ -36,7 +55,7 @@ export function NianhuaCase() {
       </CaseSection>
 
       <ProductFramework label="PRODUCT DECISIONS" title="把科普内容，组织成可探索的路径。" summary="用内容结构降低查找负担，用交互状态解释工艺。功能取舍围绕“找到知识、理解关系、完成一次体验”展开。" rows={[
-        { problem: "资料零散，浏览者难以串联历史、地域与技艺。", decision: "按历史、流派、作品、工艺与传承人组织内容，不把所有资料堆在同一长页。", evidence: "最终版汇报中的内容结构，以及真实网站的主题导航、时间线与地图入口。" },
+        { problem: "资料零散，浏览者难以串联历史、地域与技艺。", decision: "按历史、流派、作品、工艺与传承人组织内容，不把所有资料堆在同一长页。", evidence: "原始脉络图、低保真流程，以及真实网站的主题导航、时间线与地图入口。" },
         { problem: "静态成品难以解释多次套印怎样形成画面。", decision: "将体验拆成选稿、墨线版、套色与盖章；让每次动作对应可见变化。", evidence: "四张不同的原始状态界面，以及小游戏设计逻辑和套色印刷拆解图。" },
         { problem: "用户需要知道正在制作哪一幅、已经使用哪些色版。", decision: "记录当前线稿、选中颜色与已用色版；保留步骤导航和重新体验入口。", evidence: "设计说明中的三个状态字段，及界面中的线稿预览、色版区与重新开始按钮。" },
       ]} validation="已具备公开网站、原始界面与最终版汇报。尚无可核验的学习效果、任务完成率或用户反馈数据，因此不将设计目标表述为已验证成果。" />
@@ -49,6 +68,16 @@ export function NianhuaCase() {
           <div><h3>地图承担关系解释。</h3><p>地域流派不是一组孤立名称。地区高亮与图文卡片，把位置、作品和工艺放到同一个上下文中；时间线则提供另一条按年代理解内容的路径。</p></div>
           <CaseImage src={`${nianhuaImages}regions.png`} alt="地域流派地图中绵竹地区高亮并展示作品及工艺详情" width={1920} height={1080} sizes={halfSizes} caption="信息模型的实现证据 · 地域与流派联动" />
         </div>
+      </CaseSection>
+
+      <CaseSection id="nianhua-flow" eyebrow="从结构到流程" title="先确定看什么，再安排怎样走。">
+        <div className={styles.designBridge}>
+          <div><p className={styles.bridgeLabel}>内容层级 → 任务路径</p><h3>让模块之间有清楚的去向。</h3><p>脉络图把历史、流派、作品、工艺、人物与互动组织成完整结构；低保真流程再把这些模块落实为入口、详情与状态之间的连接。</p><ol><li>从主题入口找到想了解的知识。</li><li>进入历史、地域、工艺或人物详情。</li><li>从工艺认知转入选稿、刻版、套印与盖章。</li></ol></div>
+          <CaseImage className={styles.structureImage} src={`${nianhuaImages}content-map.png`} alt="纸间风华原始网站脉络图，连接首页文化溯源经典作品制作工艺传承人与互动联系" width={1278} height={657} sizes={halfSizes} caption="原始脉络图 · 内容层级与模块关系" />
+        </div>
+        <EvidenceDetails title="查看低保真任务流程" count="完整跨页与四步互动路径">
+          <CaseImage className={styles.lowfiImage} src={`${nianhuaImages}lowfi-flow.png`} alt="纸间风华低保真流程图，展示开始首页主题详情及选稿刻版套色盖章的跨页连接" width={1554} height={1100} caption="原始低保真流程 · 设计阶段的页面与状态关系" />
+        </EvidenceDetails>
       </CaseSection>
 
       <CaseSection id="nianhua-game-logic" eyebrow="INTERACTION & STATE MODEL" title="套色印刷，是一次可见的状态推进。" className={styles.printSection}>
@@ -101,6 +130,9 @@ export function NianhuaCase() {
             <CaseImage src={`${nianhuaImages}inheritors-live.png`} alt="非遗传承人页面，以人物照片展示手艺人" width={1920} height={1080} sizes={halfSizes} caption="传承人物 · 线上截图" />
           </div>
         </EvidenceDetails>
+        <EvidenceDetails title="查看原始项目字标" count="书法字标 / 941 × 533">
+          <CaseImage className={styles.identityArtwork} src={`${nianhuaImages}identity-title.png`} alt="纸间风华原始书法字标，四个汉字呈错位的行书构图" width={941} height={533} sizes="(max-width: 639px) 80vw, 440px" caption="原始项目字标 · 作为视觉材料保留" />
+        </EvidenceDetails>
       </CaseSection>
 
       <CaseSection id="nianhua-boundaries" eyebrow="EVIDENCE, LIMITS & NEXT STEPS" title="把已实现与待验证分开。">
@@ -127,11 +159,7 @@ export function NianhuaCase() {
 export function LiaoningCase() {
   return (
     <article className={`${styles.case} ${styles.liaoning}`}>
-      <CaseIntro kicker="REGIONAL CULTURE / CONTENT PRODUCT" title="山海辽藏" summary="以 17 件辽宁物产档案为线索，让检索、地域理解与个人收藏形成连续的内容体验。">
-        <div className={styles.meta}><span>地域文化内容产品</span><span>产品设计 / AI 协作网页开发</span><span>已上线可访问</span></div>
-        <VisitSite href={liaoningSite} />
-      </CaseIntro>
-      <div className={styles.cover}><CaseImage src={`${liaoningImages}cover.png`} alt="山海辽藏真实首页，深色标题与海岸平原山林矿产摄影并置" width={1910} height={883} priority caption="真实首页 · 四类自然资源构成内容入口" /></div>
+      <LiaoningHero />
 
       <CaseSection id="liaoning-problem" eyebrow="PROBLEM & USER TASKS" title="从认出一件物产，到理解它的来处。">
         <div className={styles.problemGrid}>

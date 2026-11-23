@@ -1,5 +1,18 @@
 .case { --case-accent: #2459e8; --case-ink: #10213c; --case-muted: #657186; --case-gutter: clamp(24px, 7vw, 110px); background: #f6f8fc; color: var(--case-ink); }
 .hero { background: #edf2ff; padding-top: 28px; }
+.heroIntro > div { padding-block: 30px 28px; }
+.hero .heroIntro h1 { font-size: clamp(38px, 5vw, 72px); letter-spacing: -.055em; line-height: 1.25; }
+.heroIntro > div > p:nth-of-type(2) { color: #19365f; font-size: clamp(18px, 1.7vw, 24px); }
+.heroDescription { max-width: 760px; font-size: 16px; line-height: 1.9; color: #657186; margin: 18px 0 0; }
+.heroHighlights { display: flex; flex-wrap: wrap; list-style: none; gap: 12px 30px; padding: 0; margin: 24px 0 0; color: #2459e8; font-size: 14px; }
+.heroHighlights li { border-top: 1px solid #b2c5f4; padding-top: 10px; }
+.frameworkLead { max-width: 940px; font-size: 16px; line-height: 1.9; color: #657186; margin: 0 0 28px; }
+.frameworkImage { background: #fff; border: 1px solid #d6e0f4; padding: 14px; }
+.frameworkImage > figcaption { text-align: center; }
+.frameworkSummary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin: 26px 0 0; }
+.frameworkSummary > div { border-top: 1px solid #c4d1ec; padding-top: 14px; }
+.frameworkSummary dt { color: #2459e8; font-size: 12px; margin-bottom: 8px; }
+.frameworkSummary dd { margin: 0; color: #657186; font-size: 14px; line-height: 1.85; }
 .ownerNote { font-size: 13px; line-height: 1.9; color: #657186; margin: 22px 0 0; }
 .journey { list-style: none; padding: 0; margin: 0; }
 .journey > li { display: grid; grid-template-columns: 85px minmax(0,1fr); gap: 30px; border-top: 1px solid #c4d1ec; padding: 32px 0; }
@@ -133,3 +146,18 @@
   .conclusion h2 { font-size: 36px; margin-block: 20px; }
 }
 @media (min-width: 1200px) { .journey { grid-template-columns: repeat(3,minmax(0,1fr)); } }
+@media (min-width: 640px) {
+  .hero .heroIntro h1 { font-size: clamp(42px, 5vw, 72px); }
+  .heroIntro > div { padding-block: 26px 24px; }
+  .frameworkImage { --case-image-height: min(61svh, 560px); }
+}
+@media (max-width: 639px) {
+  .heroIntro > div { padding-block: 28px 24px; }
+  .hero .heroIntro h1 { font-size: clamp(32px, 9.5vw, 48px); }
+  .heroIntro > div > p:nth-of-type(2) { font-size: 19px; line-height: 1.7; }
+  .heroDescription { font-size: 16px; }
+  .heroHighlights { gap: 12px 23px; margin-top: 22px; }
+  .frameworkImage { padding: 5px; }
+  .frameworkLead { font-size: 16px; margin-bottom: 23px; }
+  .frameworkSummary { grid-template-columns: 1fr; gap: 19px; }
+}
