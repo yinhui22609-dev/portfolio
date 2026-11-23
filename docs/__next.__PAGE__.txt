@@ -1,0 +1,27 @@
+1:"$Sreact.fragment"
+2:"/portfolio/_next/static/chunks/1ua2kfq9s-me6.js"
+3:I[39756,["$2"],"default"]
+4:I[37457,["$2"],"default"]
+8:"/portfolio/_next/static/chunks/2zoqo_h7955br.js"
+9:"/portfolio/_next/static/chunks/0xi64k7ndg18f.js"
+a:"/portfolio/_next/static/chunks/0g7312cidu9z7.js"
+b:I[30279,["$2","$8","$9","$a"],"Portfolio"]
+c:I[97367,["$2"],"OutletBoundary"]
+d:"$Sreact.suspense"
+10:"ViewportBoundary"
+11:I[97367,["$2"],"$10"]
+12:"MetadataBoundary"
+13:I[97367,["$2"],"$12"]
+:HL["/portfolio/_next/static/chunks/3ma5_0fk87nod.css","style"]
+:HL["/portfolio/_next/static/chunks/1_ypgujq8jt4d.css","style"]
+6:X
+7:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[["$","$Lb",null,{"projects":[{"id":"october","slug":"shiyue","title":"十月","englishTitle":"OCTOBER","category":"母婴社区 App UI 设计","medium":"APP / COMMUNITY","description":"围绕母婴社区的连接与交流，探索温暖、清晰的移动端界面表达。","theme":"october","image":null,"imageAlt":"十月母婴社区 App 原始 UI 作品截图"},{"id":"qingcheng","slug":"yanyu","title":"堰遇青城","englishTitle":"QINGCHENG","category":"智慧文旅 App UI 设计","medium":"APP / TRAVEL","description":"以都江堰与青城山为主题，探索文旅信息与移动端游览体验的结合。","theme":"qingcheng","image":null,"imageAlt":"堰遇青城智慧文旅 App 原始 UI 作品截图"},{"id":"paper-culture","slug":"nianhua","title":"纸间风华","englishTitle":"PAPER & CULTURE","category":"木版年画数字科普网站","medium":"WEB / CULTURE","description":"让传统木版年画走入数字阅读，以网站承载文化知识与视觉叙事。","theme":"paper","image":null,"imageAlt":"纸间风华木版年画数字科普网站原始作品截图"},{"id":"keystone","slug":"keystone","title":"Keystone","englishTitle":"KEYSTONE","category":"AI 多文档研究助手","medium":"PRODUCT / AI","description":"聚焦多文档研究场景，探索资料阅读、信息整理与 AI 辅助研究的产品体验。","theme":"keystone","image":null,"imageAlt":"Keystone AI 多文档研究助手原始 UI 作品截图"},{"id":"liaoning","slug":"liaoning","title":"辽宁物产","englishTitle":"FROM LIAONING","category":"辽宁物产主题网站","medium":"WEB / REGIONAL","description":"以地域物产为线索，通过网站呈现辽宁的地方特色与风物。","theme":"liaoning","image":null,"imageAlt":"辽宁物产主题网站原始作品截图"}]}],[["$","link","0",{"rel":"stylesheet","href":"/portfolio/_next/static/chunks/1_ypgujq8jt4d.css","precedence":"next"}],["$","script","script-0",{"src":"/portfolio/_next/static/chunks/2zoqo_h7955br.js","async":true}],["$","script","script-1",{"src":"/portfolio/_next/static/chunks/0xi64k7ndg18f.js","async":true}],["$","script","script-2",{"src":"/portfolio/_next/static/chunks/0g7312cidu9z7.js","async":true}]],["$","$Lc",null,{"children":["$","$d",null,{"name":"Next.MetadataOutlet","children":"$@e"}]}]]}],"p":"$@f","v":null,"s":"$6"}}]]
+0:{"t":{"t":{"s":"","h":80,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/portfolio/_next/static/chunks/3ma5_0fk87nod.css","precedence":"next"}],["$","script","script-0",{"src":"/portfolio/_next/static/chunks/1ua2kfq9s-me6.js","async":true}]],["$","html",null,{"lang":"zh-CN","data-scroll-behavior":"smooth","children":["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","template":["$","$L4",null,{}],"notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]]}]}]}]]}],"p":"$@5","v":null,"s":"$6"},"c":"$Q7"},"h":{"r":["$","$1","h",{"children":[null,["$","$L11",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L13",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$d",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"PORTFOLIO — 产品设计作品集"}],["$","meta","1",{"name":"description","content":"五个关于日常、文化与数字体验的设计探索。产品设计、UI 设计与数字体验作品集。"}]]}]}],null]}],null]}],"p":"$@14","v":null,"s":"$6"}},"a":"$@15","u":"$@16","b":"78f_qsEWA1cB_oS8vFmlY"}
+e:null
+6:300
+16:true
+6:C
+15:0
+5:"$undefined"
+14:"$undefined"
+f:"$undefined"
