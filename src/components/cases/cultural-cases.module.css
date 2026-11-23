@@ -1,0 +1,172 @@
+.case { --case-gutter: clamp(22px, 5.2vw, 96px); color: var(--case-ink); }
+.case p { text-wrap: pretty; }
+.nianhua { --case-accent: #b73530; --case-ink: #382b24; --case-muted: #756457; background: #f7f1e6; }
+.liaoning { --case-accent: #4f6546; --case-ink: #24362c; --case-muted: #657067; background: #f4f1e9; }
+.nianhua h1, .nianhua h2, .nianhua h3, .liaoning h1, .liaoning h2 { font-family: "Songti SC", "STSong", "SimSun", Georgia, serif; }
+.nianhuaIntro { border-top: 5px solid var(--case-accent); }
+.meta { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 30px; color: var(--case-muted); font-size: 13px; line-height: 1.8; }
+.meta > span + span { padding-left: 20px; border-left: 1px solid color-mix(in srgb, var(--case-ink) 20%, transparent); }
+.visit { display: inline-flex; align-items: center; gap: 22px; min-height: 48px; margin-top: 28px; padding: 13px 20px; color: #fffaf3; background: var(--case-accent); font-size: 14px; line-height: 1.5; transition: background .2s; }
+.visit > span { font-size: 10px; letter-spacing: .12em; opacity: .8; }
+.visit:hover { background: var(--case-ink); }
+.cover { padding: 0 var(--case-gutter) clamp(34px, 4vw, 62px); }
+.cover img { border: 1px solid color-mix(in srgb, var(--case-ink) 12%, transparent); }
+.lead { max-width: 820px; margin: 0 0 27px; color: var(--case-muted); font-size: clamp(16px, 1.3vw, 19px); line-height: 1.95; }
+.sourceNote { max-width: 930px; margin: 22px 0 0; color: var(--case-muted); font-size: 13px; line-height: 1.85; }
+.problemGrid { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(35px, 5vw, 82px); align-items: start; }
+.problemGrid .lead { margin-bottom: 0; }
+.userTasks { display: grid; margin: 0; }
+.userTasks > div { display: grid; grid-template-columns: 95px 1fr; gap: 22px; padding: 20px 0; border-bottom: 1px solid color-mix(in srgb, var(--case-ink) 17%, transparent); }
+.userTasks > div:first-child { border-top: 1px solid color-mix(in srgb, var(--case-ink) 17%, transparent); }
+.userTasks dt { font-size: 17px; line-height: 1.8; color: var(--case-ink); }
+.userTasks dd { margin: 0; font-size: 15px; line-height: 1.9; color: var(--case-muted); }
+.knowledgeLine { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 26px; margin-bottom: 42px; }
+.knowledgeLine > div { position: relative; padding-top: 26px; border-top: 1px solid #cdbba8; }
+.knowledgeLine > div > span { position: absolute; top: -4px; left: 0; height: 7px; width: 7px; background: var(--case-accent); border-radius: 50%; }
+.knowledgeLine h3 { margin: 0 0 10px; font-size: clamp(19px, 1.8vw, 25px); font-weight: 600; }
+.knowledgeLine p { margin: 0; font-size: 14px; line-height: 1.8; color: var(--case-muted); }
+.modelEvidence { display: grid; grid-template-columns: 1fr 1.3fr; gap: 50px; align-items: center; }
+.modelEvidence h3, .modelNote h3 { margin: 0 0 18px; font-size: 27px; line-height: 1.6; font-weight: 500; }
+.modelEvidence p, .modelNote p { max-width: 780px; margin: 0; font-size: 16px; line-height: 1.95; color: var(--case-muted); }
+.imagePair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 3vw, 44px); align-items: start; }
+.full { grid-column: 1 / -1; }
+.printSection { background: #f2e4da; }
+.stateFields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin: 35px 0; }
+.stateFields > div { min-width: 0; padding: 21px 0; border-top: 2px solid #b7353066; }
+.stateFields h3 { margin: 0 0 10px; font-size: 21px; line-height: 1.5; font-weight: 500; }
+.stateFields code { color: var(--case-accent); font-size: 13px; overflow-wrap: anywhere; }
+.stateFields p { margin: 12px 0 0; color: var(--case-muted); font-size: 14px; line-height: 1.85; }
+.mechanismTable { width: 100%; table-layout: fixed; border-collapse: collapse; text-align: left; margin: 0 0 38px; }
+.mechanismTable thead { border-top: 1px solid #bca38d; }
+.mechanismTable th, .mechanismTable td { vertical-align: top; overflow-wrap: anywhere; }
+.mechanismTable thead th { padding: 16px 18px 16px 0; color: var(--case-accent); font-size: 13px; font-weight: 500; }
+.mechanismTable tr { border-bottom: 1px solid #cbb6a4; }
+.mechanismTable tbody th, .mechanismTable td { padding: 22px 20px 22px 0; font-size: 15px; line-height: 1.85; }
+.mechanismTable tbody th { font-weight: 500; }
+.mechanismTable td { color: var(--case-muted); }
+.mechanismTable th:last-child, .mechanismTable td:last-child { padding-right: 0; }
+.mechanismLayout, .mechanismCopy { min-width: 0; }
+.mechanismFigures { display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; align-items: start; }
+.mechanismFigures > figure:last-child { padding: 12px; background: #faf6ee; }
+.evidenceDetails { margin-top: 30px; border-top: 1px solid color-mix(in srgb, var(--case-ink) 24%, transparent); border-bottom: 1px solid color-mix(in srgb, var(--case-ink) 24%, transparent); }
+.evidenceDetails > summary { cursor: pointer; min-height: 64px; padding: 20px 0; color: var(--case-ink); font-size: 16px; line-height: 1.65; }
+.evidenceDetails > summary > span { display: inline-block; margin-left: 20px; color: var(--case-muted); font-size: 12px; }
+.evidenceDetails > summary:focus-visible { outline: 2px solid var(--case-accent); outline-offset: 5px; }
+.evidenceDetails[open] > summary { border-bottom: 1px solid color-mix(in srgb, var(--case-ink) 15%, transparent); }
+.evidenceContent { padding: 30px 0; }
+.evidenceStack { display: grid; gap: 30px; min-width: 0; }
+.boundaryGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 55px; }
+.boundaryGrid > div { padding-top: 22px; border-top: 1px solid color-mix(in srgb, var(--case-ink) 24%, transparent); }
+.boundaryGrid h3 { margin: 0 0 18px; font-size: 24px; line-height: 1.6; font-weight: 500; }
+.boundaryGrid ul { padding-left: 20px; margin: 0; list-style-type: disc; color: var(--case-muted); }
+.boundaryGrid li { padding-left: 3px; margin-bottom: 12px; font-size: 15px; line-height: 1.9; }
+.boards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.2vw, 30px); align-items: start; }
+.boards > figure > button > img { width: 100%; height: auto; object-fit: contain; }
+.archiveModel { min-width: 0; }
+.archiveRoot { width: fit-content; margin: 0 auto 32px; padding: 14px 25px; background: #536b50; color: #fffdf8; font-size: 16px; line-height: 1.8; }
+.archiveNodes { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; }
+.archiveNodes > div { padding: 25px 18px; background: #e7e8dd; border-top: 1px solid #a6b29a; }
+.archiveNodes h3 { margin: 0 0 9px; font-size: 20px; font-weight: 500; line-height: 1.5; }
+.archiveNodes p { margin: 0; color: var(--case-muted); font-size: 13px; line-height: 1.85; }
+.modelOutput { margin: 28px 0 0; border-bottom: 1px solid #b8c1ae; padding-bottom: 22px; color: var(--case-muted); font-size: 14px; line-height: 1.9; text-align: center; }
+.modelNote { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; margin: 40px 0; align-items: start; }
+.modelNote h3 { margin: 0; }
+.routeSection { background: #e4e9dd; }
+.routeGallery { display: grid; grid-template-columns: 1.7fr 1fr; gap: clamp(30px, 5vw, 75px); align-items: start; }
+.routeGallery .lead { margin-bottom: 38px; }
+.implementation { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-top: 40px; }
+.implementation > div > p { margin: 0; color: var(--case-muted); font-size: 16px; line-height: 1.9; }
+@media (min-width: 1024px) {
+  .case > section[id] { padding-block: clamp(30px, 3vw, 44px); }
+  .case > section[id] > div:first-child { margin-bottom: 24px; }
+  .lead { font-size: 16px; line-height: 1.85; margin-bottom: 21px; }
+  .sourceNote { margin-top: 17px; }
+  .cover { padding-bottom: 34px; }
+  .userTasks > div { padding-block: 14px; }
+  .knowledgeLine { margin-bottom: 28px; gap: 20px; }
+  .knowledgeLine > div { padding-top: 19px; }
+  .modelEvidence { gap: 32px; }
+  .modelEvidence h3, .modelNote h3 { font-size: 25px; margin-bottom: 12px; }
+  .mechanismLayout { display: grid; grid-template-columns: 1.65fr 1fr; gap: 30px; align-items: start; }
+  .stateFields { gap: 15px; margin: 0 0 20px; }
+  .stateFields > div { padding-block: 14px; }
+  .stateFields h3 { font-size: 19px; margin-bottom: 7px; }
+  .stateFields p { margin-top: 8px; }
+  .mechanismTable { margin-bottom: 0; }
+  .mechanismTable thead th { padding: 12px 12px 12px 0; }
+  .mechanismTable tbody th, .mechanismTable td { padding: 14px 13px 14px 0; font-size: 15px; line-height: 1.8; }
+  .mechanismFigures { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .mechanismFigures > figure { --case-image-height: min(25svh, 225px); }
+  .mechanismFigures > figure:last-child { padding: 8px; }
+  .evidenceDetails { margin-top: 24px; }
+  .evidenceDetails > summary { min-height: 56px; padding-block: 14px; }
+  .evidenceContent { padding-block: 24px; }
+  .boundaryGrid { gap: 35px; }
+  .boundaryGrid > div { padding-top: 16px; }
+  .boundaryGrid h3 { font-size: 22px; margin-bottom: 13px; }
+  .boundaryGrid li { margin-bottom: 8px; }
+  .boards > figure { --case-image-height: min(52svh, 460px); }
+  .archiveRoot { margin-bottom: 24px; padding-block: 11px; }
+  .archiveNodes { gap: 15px; }
+  .archiveNodes > div { padding: 20px 16px; }
+  .archiveNodes h3 { font-size: 19px; }
+  .modelOutput { margin-top: 20px; padding-bottom: 16px; }
+  .modelNote { margin-block: 26px; gap: 28px; }
+  .routeGallery { gap: 35px; }
+  .routeGallery .lead { margin-bottom: 22px; }
+  .implementation { margin-top: 27px; gap: 35px; }
+}
+@media (max-width: 1023px) {
+  .problemGrid { gap: 35px; }
+  .knowledgeLine { gap: 16px; }
+  .knowledgeLine h3 { font-size: 19px; }
+  .modelEvidence { gap: 30px; }
+  .userTasks > div { grid-template-columns: 75px 1fr; gap: 15px; }
+  .archiveNodes { gap: 12px; }
+  .archiveNodes > div { padding-inline: 12px; }
+  .archiveNodes h3 { font-size: 18px; }
+  .implementation, .boundaryGrid { gap: 35px; }
+}
+@media (max-width: 639px) {
+  .meta { font-size: 12px; gap: 8px 14px; margin-top: 24px; }
+  .meta > span + span { padding-left: 0; border: 0; }
+  .visit { margin-top: 24px; gap: 16px; padding-inline: 17px; }
+  .visit > span { font-size: 9px; }
+  .problemGrid, .modelEvidence, .stateFields, .mechanismFigures, .boundaryGrid, .modelNote, .routeGallery, .implementation { grid-template-columns: 1fr; gap: 28px; }
+  .lead { font-size: 16px; }
+  .userTasks > div { grid-template-columns: 82px 1fr; gap: 16px; }
+  .userTasks dt { font-size: 16px; }
+  .knowledgeLine { grid-template-columns: 1fr; gap: 0; margin-bottom: 30px; }
+  .knowledgeLine > div { display: grid; grid-template-columns: 100px 1fr; gap: 15px; align-items: baseline; padding: 19px 0 19px 15px; }
+  .knowledgeLine > div:last-child { border-bottom: 1px solid #cdbba8; }
+  .knowledgeLine h3 { font-size: 20px; margin: 0; }
+  .knowledgeLine > div > span { left: 0; top: 28px; width: 4px; height: 4px; }
+  .knowledgeLine p { font-size: 13px; }
+  .imagePair { grid-template-columns: 1fr; gap: 28px; }
+  .boards { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .modelEvidence h3, .modelNote h3 { font-size: 25px; }
+  .stateFields { gap: 12px; margin: 30px 0; }
+  .stateFields > div { padding-block: 18px; }
+  .mechanismTable, .mechanismTable tbody, .mechanismTable tr, .mechanismTable tbody th, .mechanismTable td { display: block; width: 100%; }
+  .mechanismTable thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .mechanismTable tbody { border-top: 1px solid #bca38d; }
+  .mechanismTable tr { padding: 22px 0 8px; }
+  .mechanismTable tbody th, .mechanismTable td { padding: 0 0 16px; }
+  .mechanismTable [data-label]::before { content: attr(data-label); display: block; margin-bottom: 5px; color: var(--case-accent); font-size: 12px; line-height: 1.8; font-weight: 400; }
+  .mechanismFigures > figure:last-child { padding: 8px; }
+  .evidenceDetails > summary { padding-block: 18px; }
+  .evidenceDetails > summary > span { display: block; margin: 5px 0 0 18px; }
+  .evidenceContent { padding-block: 24px; }
+  .boundaryGrid { gap: 25px; }
+  .archiveRoot { margin: 0 0 22px; font-size: 15px; padding-inline: 17px; }
+  .archiveNodes { grid-template-columns: 1fr; gap: 12px; }
+  .archiveNodes > div { display: grid; grid-template-columns: 100px 1fr; align-items: baseline; gap: 12px; padding: 18px; border-top: 0; border-left: 2px solid #a6b29a; }
+  .archiveNodes h3 { margin: 0; }
+  .archiveNodes p { font-size: 13px; }
+  .modelOutput { text-align: left; margin-top: 23px; }
+  .modelNote { gap: 15px; margin-block: 30px; }
+  .routeGallery .lead { margin-bottom: 25px; }
+  .routeGallery > figure { max-width: 380px; width: 100%; margin-inline: auto; }
+  .implementation { margin-top: 30px; }
+}
+@media (prefers-reduced-motion: reduce) { .visit { transition: none; } }

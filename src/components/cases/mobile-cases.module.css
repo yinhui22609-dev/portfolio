@@ -1,0 +1,211 @@
+.case { --case-gutter: clamp(22px, 4.4vw, 72px); overflow: clip; }
+.shiyue { --case-accent: #bf6b81; --case-ink: #342c30; --case-muted: #70636a; background: #fffaf8; color: var(--case-ink); }
+.yanyu { --case-accent: #587b3f; --case-ink: #273328; --case-muted: #66705f; background: #faf9f3; color: var(--case-ink); }
+.hero { display: grid; grid-template-columns: 1.08fr .92fr; gap: clamp(30px, 4vw, 70px); align-items: center; padding: clamp(32px, 4vw, 64px) var(--case-gutter) clamp(45px, 5vw, 75px); }
+.heroCopy { min-width: 0; }
+.heroCopy > div { padding: 0; }
+.heroCopy h1 { font-family: "Songti SC", SimSun, Georgia, serif; font-size: clamp(50px, 6.5vw, 94px); line-height: 1.18; letter-spacing: -.055em; }
+.heroCopy > div > p:nth-of-type(2) { font-family: "Songti SC", SimSun, Georgia, serif; color: var(--case-ink); font-size: clamp(21px, 2.5vw, 34px); line-height: 1.55; margin-top: 21px; }
+.heroDescription { font-size: 16px; line-height: 1.95; max-width: 570px; margin: 25px 0; color: var(--case-muted); }
+.shiyueCover { width: min(100%, 330px); margin-inline: auto; }
+.yanyuCover { width: 100%; }
+.yanyuCover > button { border-radius: 8px; overflow: hidden; }
+.section > div:first-child { flex-direction: row-reverse; align-items: center; }
+.section > div:first-child > p { font-size: 11px; letter-spacing: .075em; text-align: right; }
+.section > div:first-child > h2 { font-family: "Songti SC", SimSun, Georgia, serif; font-size: clamp(28px, 3vw, 43px); font-weight: 700; }
+.sectionLead { max-width: 940px; font-size: 16px; line-height: 1.95; color: var(--case-muted); margin: -11px 0 34px; }
+.stateModel { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 25px; }
+.stateModel > div { min-width: 0; border-top: 2px solid #d1a4b2; padding-top: 22px; }
+.stateModel h3 { margin: 0 0 22px; font-size: 25px; font-weight: 500; }
+.stateModel dl { margin: 0; }
+.stateModel dl > div { margin-top: 15px; }
+.stateModel dt { font-size: 10px; color: var(--case-accent); line-height: 1.8; }
+.stateModel dd { margin: 6px 0 0; font-size: 14px; line-height: 1.85; color: var(--case-muted); }
+.pathLabel { margin: 45px 0 22px; padding-top: 26px; border-top: 1px solid color-mix(in srgb, var(--case-accent) 25%, transparent); color: var(--case-accent); font-size: 11px; line-height: 1.8; letter-spacing: .06em; }
+.taskPath { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 35px; padding: 0; margin: 0; list-style: none; }
+.taskPath > li { position: relative; min-width: 0; }
+.taskPath > li:not(:last-child)::after { content: "→"; position: absolute; right: -23px; top: -1px; color: var(--case-accent); font-size: 22px; }
+.taskPath > li > span { display: block; color: var(--case-accent); font-size: 13px; font-variant-numeric: tabular-nums; margin-bottom: 19px; }
+.taskPath h3 { margin: 0 0 12px; font-size: 20px; line-height: 1.5; font-weight: 500; }
+.taskPath p { margin: 0; font-size: 14px; line-height: 1.9; color: var(--case-muted); }
+.scopeGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(26px, 4vw, 58px); }
+.scopeGrid > div { min-width: 0; padding-top: 20px; border-top: 1px solid color-mix(in srgb, var(--case-accent) 30%, transparent); }
+.scopeGrid > div > span { color: var(--case-accent); font-size: 11px; line-height: 1.8; }
+.scopeGrid h3 { font-size: 23px; font-weight: 500; line-height: 1.6; margin: 16px 0; letter-spacing: -.03em; }
+.scopeGrid p { margin: 0; font-size: 15px; line-height: 1.95; color: var(--case-muted); }
+.tripStages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 35px; }
+.tripStages > div { min-width: 0; border-left: 2px solid #b8c7a6; padding-left: 22px; }
+.tripStages > div > span { color: var(--case-accent); font-size: 11px; line-height: 1.8; }
+.tripStages h3 { margin: 15px 0; font-size: 26px; line-height: 1.5; font-weight: 500; letter-spacing: -.04em; }
+.tripStages p { margin: 0; font-size: 15px; line-height: 1.9; color: var(--case-muted); }
+.navigationModel { display: grid; grid-template-columns: 145px 1fr; gap: 20px; align-items: center; margin-top: 35px; padding-top: 25px; border-top: 1px solid #c7d1bc; }
+.navigationModel > span { font-size: 11px; color: var(--case-accent); }
+.navigationModel ul { display: flex; flex-wrap: wrap; gap: 10px 25px; list-style: none; padding: 0; margin: 0; }
+.navigationModel li { font-size: 14px; line-height: 1.8; }
+.screenGrid { display: grid; gap: 35px; align-items: start; }
+.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.four { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 25px; }
+.five { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; }
+.two { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(45px, 9vw, 160px); max-width: 960px; margin-inline: auto; }
+.screenItem { min-width: 0; }
+.three .screenItem { max-width: 330px; width: 100%; margin-inline: auto; }
+.two .screenItem { max-width: 360px; width: 100%; margin-inline: auto; }
+.screenItem > figure > figcaption { text-align: center; font-size: 16px; font-weight: 600; color: var(--case-ink); margin-top: 20px; }
+.screenNote { font-size: 14px; line-height: 1.9; color: var(--case-muted); margin: 13px 7px 0; }
+.yanyu .screenItem > figure > button { border-radius: 4px; overflow: hidden; }
+.validationGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 35px; }
+.validationGrid > div { min-width: 0; padding-top: 22px; border-top: 1px solid color-mix(in srgb, var(--case-accent) 28%, transparent); }
+.validationGrid h3 { margin: 0 0 17px; font-size: 22px; line-height: 1.55; font-weight: 500; letter-spacing: -.035em; }
+.validationGrid p { margin: 0 0 17px; font-size: 15px; line-height: 1.95; color: var(--case-muted); }
+.validationGrid small { display: block; color: var(--case-accent); font-size: 12px; line-height: 1.85; }
+.archive { border-top: 1px solid color-mix(in srgb, var(--case-accent) 35%, transparent); }
+.archive:last-child { border-bottom: 1px solid color-mix(in srgb, var(--case-accent) 35%, transparent); }
+.archive summary { display: grid; grid-template-columns: 1fr auto 24px; align-items: center; gap: 22px; min-height: 82px; padding: 18px 0; cursor: pointer; list-style: none; }
+.archive summary::-webkit-details-marker { display: none; }
+.archive summary > span { font-family: "Songti SC", SimSun, Georgia, serif; font-size: 24px; line-height: 1.5; letter-spacing: -.035em; }
+.archive summary > small { color: var(--case-muted); font-size: 11px; line-height: 1.8; }
+.archive summary::after { content: "+"; color: var(--case-accent); font-size: 25px; line-height: 1; text-align: right; }
+.archive[open] > summary::after { content: "−"; }
+.archive[open] > summary { border-bottom: 1px solid color-mix(in srgb, var(--case-accent) 20%, transparent); }
+.archive summary:hover > span { color: var(--case-accent); }
+.archive summary:focus-visible { outline: 2px solid var(--case-accent); outline-offset: 5px; }
+.archiveContent { padding: 30px 0 45px; }
+.archiveDescription { max-width: 880px; font-size: 14px; line-height: 1.95; color: var(--case-muted); margin: 0 0 33px; }
+.shiyueVisual { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: center; }
+.brandPoster { max-width: 250px; width: 100%; margin-inline: auto; }
+.visualCopy { min-width: 0; }
+.visualCopy .iconRow p { font-size: 16px; line-height: 1.95; color: var(--case-muted); margin: 0 0 25px; }
+.iconRow { display: grid; grid-template-columns: 70px 1fr; gap: 25px; align-items: start; margin-bottom: 15px; }
+.iconRow h3 { margin: 0 0 17px; font-size: 24px; font-weight: 500; line-height: 1.5; }
+.appIcon { width: 70px; }
+.handMockup { max-width: 960px; margin: 34px auto 0; }
+.evidenceNote { max-width: 940px; margin: 35px 0 0; font-size: 14px; line-height: 1.85; color: var(--case-muted); border-left: 2px solid var(--case-accent); padding-left: 18px; }
+.designGrid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 40px; align-items: start; }
+.designStack { display: grid; gap: 33px; }
+.subheading { margin: 0 0 22px; font-size: 21px; line-height: 1.5; font-weight: 500; }
+.toolExtension { margin-top: clamp(38px, 5vw, 70px); }
+.logoStudy { max-width: 900px; margin: 45px auto 0; }
+.startPoster { max-width: 220px; width: 100%; margin: 45px auto 0; }
+@media (max-width: 1023px) {
+  .hero { gap: 25px; grid-template-columns: 1.1fr .9fr; }
+  .heroCopy h1 { font-size: clamp(43px, 6.5vw, 68px); }
+  .heroCopy > div > p:nth-of-type(2) { font-size: 23px; }
+  .stateModel { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; }
+  .taskPath { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 42px; }
+  .taskPath > li:nth-child(2)::after { display: none; }
+  .screenGrid { gap: 35px; }.three, .four, .five { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .three .screenItem { max-width: 300px; }
+  .five .screenItem { max-width: 300px; width: 100%; margin-inline: auto; }
+  .two { gap: 35px; }
+  .scopeGrid, .validationGrid { gap: 25px; }
+  .scopeGrid h3, .validationGrid h3 { font-size: 21px; }
+  .tripStages { gap: 23px; }
+  .tripStages h3 { font-size: 22px; }
+  .tripStages > div { padding-left: 17px; }
+  .shiyueVisual { gap: 35px; grid-template-columns: .7fr 1.3fr; }
+  .iconRow { grid-template-columns: 50px 1fr; gap: 18px; }.appIcon { width: 50px; }
+  .iconRow h3 { font-size: 22px; }
+  .designGrid { grid-template-columns: 1fr; gap: 38px; }
+  .designStack { grid-template-columns: 1fr 1fr; gap: 30px; }
+}
+@media (max-width: 639px) {
+  .hero { grid-template-columns: 1fr; gap: 35px; padding-block: 35px 45px; }
+  .heroCopy h1 { font-size: 54px; }
+  .heroCopy > div > p:nth-of-type(2) { font-size: 23px; margin-top: 17px; }
+  .heroDescription { margin-block: 21px; font-size: 16px; }
+  .shiyueCover { max-width: 280px; }
+  .section > div:first-child { flex-direction: column; align-items: flex-start; gap: 9px; }
+  .section > div:first-child > p { order: 0; text-align: left; font-size: 11px; }
+  .section > div:first-child > h2 { order: 1; font-size: 31px; }
+  .sectionLead { margin-top: -4px; margin-bottom: 27px; font-size: 16px; }
+  .stateModel { gap: 25px 20px; }
+  .stateModel h3 { font-size: 24px; margin-bottom: 20px; }
+  .stateModel dd { font-size: 13px; }
+  .pathLabel { margin-top: 32px; padding-top: 22px; }
+  .taskPath { grid-template-columns: 1fr; gap: 0; }
+  .taskPath > li { display: grid; grid-template-columns: 32px 1fr; gap: 0 14px; padding: 22px 0; border-bottom: 1px solid color-mix(in srgb, var(--case-accent) 25%, transparent); }
+  .taskPath > li:first-child { padding-top: 0; }
+  .taskPath > li > span { grid-column: 1; grid-row: 1/3; margin: 3px 0 0; }
+  .taskPath > li > h3 { font-size: 22px; grid-column: 2; }
+  .taskPath > li > p { grid-column: 2; font-size: 15px; }
+  .taskPath > li:not(:last-child)::after { display: none; }
+  .scopeGrid, .validationGrid, .tripStages { grid-template-columns: 1fr; gap: 30px; }
+  .scopeGrid h3, .validationGrid h3 { font-size: 24px; }
+  .scopeGrid p, .validationGrid p, .tripStages p { font-size: 16px; }
+  .tripStages h3 { font-size: 25px; }
+  .navigationModel { grid-template-columns: 1fr; gap: 15px; }
+  .navigationModel ul { gap: 10px 20px; }
+  .screenGrid, .three, .four, .five, .two { grid-template-columns: 1fr; gap: 40px; }
+  .screenGrid .screenItem { max-width: 330px; width: 100%; margin-inline: auto; }
+  .screenNote { font-size: 15px; }
+  .archive summary { grid-template-columns: 1fr 22px; gap: 7px 10px; padding-block: 21px; }
+  .archive summary > span { font-size: 23px; }
+  .archive summary > small { grid-row: 2; grid-column: 1; font-size: 11px; }
+  .archive summary::after { grid-column: 2; grid-row: 1/3; }
+  .archiveContent { padding-block: 27px 35px; }
+  .archiveDescription { font-size: 15px; }
+  .shiyueVisual { grid-template-columns: 1fr; gap: 32px; }.brandPoster { max-width: 240px; }
+  .iconRow { grid-template-columns: 60px 1fr; gap: 18px; }.appIcon { width: 60px; }.iconRow h3 { font-size: 22px; }
+  .designGrid, .designStack { grid-template-columns: 1fr; gap: 33px; }
+  .subheading { margin-bottom: 17px; font-size: 22px; }
+  .logoStudy { margin-top: 33px; }
+}
+@media (min-width: 1024px) {
+  .hero { max-width: 1240px; margin-inline: auto; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 36px; padding-block: 28px 34px; }
+  .heroCopy h1 { font-size: clamp(50px, 4.5vw, 66px); }
+  .heroCopy > div > p:first-child { margin-bottom: 13px; }
+  .heroCopy > div > p:nth-of-type(2) { font-size: clamp(21px, 1.8vw, 26px); margin-top: 18px; line-height: 1.5; }
+  .heroDescription { font-size: 15px; line-height: 1.85; margin: 18px 0 0; max-width: 520px; }
+  .shiyueCover { width: min(100%, 260px); --case-image-height: min(48svh, 420px); }
+  .yanyuCover { --case-image-height: min(52svh, 450px); }
+  .section > div:first-child { margin-bottom: 24px; gap: 20px; }
+  .section > div:first-child > h2 { font-size: clamp(28px, 2.35vw, 34px); }
+  .sectionLead { font-size: 15px; line-height: 1.85; margin: 0 0 24px; max-width: 850px; }
+  .stateModel { gap: 22px; }
+  .stateModel > div { padding-top: 16px; }
+  .stateModel h3 { font-size: 22px; margin-bottom: 16px; }
+  .stateModel dl > div { margin-top: 10px; }
+  .stateModel dd { font-size: 13px; line-height: 1.8; margin-top: 4px; }
+  .pathLabel { margin: 28px 0 16px; padding-top: 20px; }
+  .taskPath { gap: 28px; }
+  .taskPath > li:not(:last-child)::after { right: -19px; font-size: 20px; }
+  .taskPath > li > span { margin-bottom: 12px; }
+  .taskPath h3 { font-size: 18px; margin-bottom: 10px; }
+  .taskPath p { font-size: 13px; line-height: 1.85; }
+  .scopeGrid { gap: 30px; }
+  .scopeGrid > div { padding-top: 16px; }
+  .scopeGrid h3 { font-size: 21px; margin-block: 12px; }
+  .scopeGrid p { font-size: 14px; line-height: 1.85; }
+  .tripStages { gap: 28px; }
+  .tripStages > div { padding-left: 18px; }
+  .tripStages h3 { font-size: 23px; margin-block: 12px; }
+  .tripStages p { font-size: 14px; line-height: 1.85; }
+  .navigationModel { margin-top: 25px; padding-top: 20px; }
+  .screenGrid { gap: 26px; }
+  .three .screenItem, .two .screenItem { max-width: 270px; }
+  .screenItem > figure { --case-image-height: min(48svh, 420px); }
+  .screenItem > figure > figcaption { font-size: 14px; margin-top: 12px; }
+  .screenNote { font-size: 13px; line-height: 1.85; margin: 8px 0 0; }
+  .validationGrid { gap: 28px; }
+  .validationGrid > div { padding-top: 17px; }
+  .validationGrid h3 { font-size: 21px; margin-bottom: 13px; }
+  .validationGrid p { font-size: 14px; line-height: 1.85; margin-bottom: 13px; }
+  .validationGrid small { font-size: 11px; line-height: 1.8; }
+  .archive summary { min-height: 64px; padding-block: 14px; }
+  .archive summary > span { font-size: 21px; }
+  .archiveContent { padding-block: 24px 32px; }
+  .archiveDescription { font-size: 13px; line-height: 1.85; margin-bottom: 26px; }
+  .archiveContent .screenItem > figure { --case-image-height: min(44svh, 400px); }
+  .shiyueVisual { gap: 36px; }
+  .brandPoster { max-width: 190px; }
+  .iconRow { gap: 20px; }
+  .iconRow h3 { font-size: 22px; margin-bottom: 13px; }
+  .visualCopy .iconRow p { font-size: 14px; line-height: 1.85; }
+  .handMockup { max-width: 760px; margin-top: 28px; --case-image-height: min(50svh, 450px); }
+  .designGrid { gap: 28px; }
+  .designStack { gap: 25px; }
+  .subheading { font-size: 19px; margin-bottom: 18px; }
+  .toolExtension { margin-top: 32px; }
+  .logoStudy { max-width: 760px; margin-top: 28px; }
+  .startPoster { max-width: 180px; margin-top: 28px; }
+}

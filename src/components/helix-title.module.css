@@ -1,0 +1,20 @@
+.title { pointer-events: auto; }
+.scene { position: absolute; inset: 0; perspective: 1600px; perspective-origin: 50% 50%; }
+.parallax { display: block; position: relative; width: 100%; height: 100%; transform-style: preserve-3d; }
+.strand, .plane, .anchor { transform-style: preserve-3d; }
+.fallback { display: inline-block; }
+.plane { display: none; position: absolute; inset: 0; }
+.title[data-helix-ready="true"] .fallback { visibility: hidden; }
+.title[data-helix-ready="true"] .plane { display: block; }
+.anchor { position: absolute; top: 0; height: 1em; }
+.glyph { display: block; width: 100%; height: 1em; transform-origin: 50% 44%; will-change: transform; }
+.measure { position: absolute; top: 0; left: 0; white-space: nowrap; visibility: hidden; pointer-events: none; }
+.path { position: absolute; pointer-events: none; overflow: hidden; }
+.title[data-helix-state="offscreen"] .glyph, .title[data-helix-state="hidden"] .glyph { will-change: auto; }
+@media (min-width: 640px) { .title[data-helix-ready="true"] .strand:nth-child(2) { top: .2em; } }
+@media (max-width: 639px) { .scene { perspective: 1100px; } }
+@media (prefers-reduced-motion: reduce) {
+  .title .fallback { visibility: visible !important; }
+  .title .plane { display: none !important; }
+  .glyph { will-change: auto; }
+}

@@ -1,0 +1,41 @@
+.framework { padding: clamp(44px, 5vw, 76px) var(--case-gutter, var(--gutter)); border-top: 1px solid color-mix(in srgb, var(--case-ink, #111) 18%, transparent); color: var(--case-ink, #111); }
+.heading { display: flex; align-items: baseline; justify-content: space-between; gap: 30px; margin-bottom: 28px; }
+.heading > p { color: var(--case-accent, #e74735); font-size: 11px; line-height: 1.8; letter-spacing: .1em; margin: 0; }
+.heading h2 { font-size: clamp(27px, 3vw, 43px); line-height: 1.4; font-weight: 600; letter-spacing: -.05em; margin: 0; }
+.summary { max-width: 900px; margin: 0 0 32px; color: var(--case-muted, #606060); font-size: 16px; line-height: 1.95; }
+.table { table-layout: fixed; border-collapse: collapse; width: 100%; text-align: left; }
+.table thead { border-top: 2px solid var(--case-accent, #e74735); }
+.table thead th { padding: 18px 22px 18px 0; font-size: 12px; font-weight: 500; color: var(--case-accent, #e74735); }
+.table tr { border-bottom: 1px solid color-mix(in srgb, var(--case-ink, #111) 17%, transparent); }
+.table th, .table td { vertical-align: top; overflow-wrap: anywhere; }
+.table tbody th, .table td { padding: 24px 24px 24px 0; font-size: 15px; line-height: 1.9; }
+.table th:first-child { width: 27%; }
+.table tbody th { font-weight: 600; }
+.table td { color: var(--case-muted, #606060); }
+.table th:last-child, .table td:last-child { padding-right: 0; }
+.validation { display: grid; grid-template-columns: 160px 1fr; gap: 25px; margin-top: 25px; }
+.validation > span { font-size: 11px; color: var(--case-accent, #e74735); padding-top: 4px; }
+.validation > p { margin: 0; color: var(--case-muted, #606060); font-size: 13px; line-height: 1.9; }
+@media (max-width: 639px) {
+  .heading { flex-direction: column; gap: 9px; margin-bottom: 22px; }
+  .heading h2 { font-size: 29px; }
+  .table { display: block; }
+  .table caption { display: none; }
+  .table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .table tbody, .table tr, .table tbody th, .table td { display: block; width: 100%; }
+  .table tbody { border-top: 2px solid var(--case-accent, #e74735); }
+  .table tr { padding: 22px 0; }
+  .table tbody th, .table td { width: 100%; padding: 0 0 18px; font-size: 15px; }
+  .table td:last-child { padding-bottom: 0; }
+  .table [data-label]::before { display: block; content: attr(data-label); color: var(--case-accent, #e74735); font-size: 10px; line-height: 1.8; font-weight: 400; margin-bottom: 5px; }
+  .validation { grid-template-columns: 1fr; gap: 10px; }
+}
+@media (min-width: 640px) {
+  .framework { padding-block: 40px; }
+  .heading { margin-bottom: 22px; }
+  .heading h2 { font-size: clamp(27px,2.8vw,36px); }
+  .summary { margin-bottom: 24px; font-size: 15px; line-height: 1.85; }
+  .table tbody th, .table td { padding-block: 18px; line-height: 1.8; }
+  .table thead th { padding-block: 14px; }
+  .validation { margin-top: 20px; }
+}
