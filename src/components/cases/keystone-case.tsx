@@ -1,90 +1,88 @@
-import { CaseImage, CaseIntro, CaseSection, PendingMaterial } from "./case-primitives";
-import { ProductFramework } from "./product-framework";
-import { keystoneJourney, keystoneValidation } from "@/lib/keystone-process";
-import { assetPath } from "@/lib/asset-path";
+import type { ReactNode } from "react";
+import { CaseImage } from "./case-primitives";
+import { keystoneCalls, keystoneDecisions, keystoneFlow, keystoneProblems, keystonePublicEvidence, keystoneTimeline, keystoneTokens } from "@/lib/keystone-process";
 import styles from "./keystone-case.module.css";
 
-const base = "/images/projects/keystone/";
-const pipeline = [
-  ["限定资料", "用户选择文档版本与原文范围"],
-  ["检索依据", "检索片段保留文件、页码与位置"],
-  ["生成主张", "在给定证据范围内回答或分析"],
-  ["核对引用", "程序匹配原文位置，再复核主张与证据"],
-  ["人工确认", "判断缺口、冲突与分析维度"],
-  ["保存交付", "保留版本，整理研究简报与来源"],
-];
+const chapters = [["overview", "项目概览"], ["problem", "问题定义"], ["solution", "核心方案"], ["decisions", "设计决策"], ["validation", "真实验证"], ["reflection", "贡献与复盘"]] as const;
+const totalTokens = keystoneTokens.reduce((sum, item) => sum + item.value, 0);
+
+function Section({ id, number, english, title, children }: { id: string; number: string; english: string; title: string; children: ReactNode }) {
+  return <section id={"keystone-" + id} data-keystone-section={id} className={styles.section} aria-labelledby={"keystone-" + id + "-heading"}>
+    <div className={styles.heading}><span className={styles.sectionNo} aria-hidden="true">{number}</span><div><p className={styles.eyebrow}>{english}</p><h2 id={"keystone-" + id + "-heading"}>{title}</h2></div></div>{children}
+  </section>;
+}
+
+function Source({ children }: { children: ReactNode }) {
+  return <a className={styles.sourceLink} href="#keystone-sources">{children} ↗</a>;
+}
+
+function FlowSymbol({ index }: { index: number }) {
+  const paths = [
+    "M12 16V3m-4 4 4-4 4 4M4 15v6h16v-6",
+    "M4 4h11v5M4 4v16h8m-4-9h4m-4 4h2M18 17l4 4m-1-9a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z",
+    "M4 4h16v13H9l-5 4V4Zm4 5h8m-8 4h5",
+    "M4 4h16v16H4V4Zm0 5h16M9 4v16m5-11v11",
+    "M12 3 3 7v6c0 4 9 8 9 8s9-4 9-8V7l-9-4Zm-4 9 3 3 5-6",
+    "M5 3h10l4 4v14H5V3Zm10 0v5h4M8 12h8m-8 4h8",
+  ];
+  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={paths[index]} /></svg>;
+}
 
 export function KeystoneCase() {
-  return <article className={styles.case} aria-labelledby="project-heading">
-    <header className={styles.hero}>
-      <div className={styles.identity}><span className={styles.monogram}>K</span><span>KEYSTONE<br /><small>AI RESEARCH COPILOT</small></span><span className={styles.progress}>PERSONAL PROJECT / 迭代中</span></div>
-      <div className={styles.heroIntro}><CaseIntro kicker="KEYSTONE / AI PRODUCT DESIGN" title="AI多文档研究助手" summary="让 AI 研究，从信息检索走向有据可查。">
-        <p className={styles.heroDescription}>从研究需求出发，设计可控制、可回查、可交付的 AI 工作流，连接资料管理、研究问答、对比分析与引用核验。</p>
-        <p className={styles.ownerNote}>AI 产品负责人（个人项目） · AI 工作流设计<br />负责需求收敛、产品规划、交互方案与迭代验收，借助 Codex 推进实现。</p>
-        <ul className={styles.heroHighlights} aria-label="产品设计主线"><li>资料管理</li><li>研究问答</li><li>对比分析</li><li>引用核验</li></ul>
-      </CaseIntro></div>
-      <div className={styles.heroStage}>
-        <div className={styles.workspace}><CaseImage src={base + "research-workspace-clear.png"} alt="Keystone 真实清晰工作台，包含资料侧栏、研究问答、资料库、研究分析表与研究简报导航" width={1919} height={814} priority caption="新提供的真实工作台截图 · 完整保留原始界面，可放大查看" sizes="(max-width: 639px) 94vw, (max-width: 1023px) 88vw, 72vw" /></div>
-        <div className={styles.heroAside}><span>THE PRODUCT QUESTION</span><h2>如何让答案，<br />成为可用的研究？</h2><p>重点不止生成文本，而是把资料范围、证据、人工判断与最终交付连接起来。</p><div><span>当前阶段</span><strong>本地核心流程已验证<br />公网发布准备中</strong></div></div>
+  return <article className={styles.case} data-keystone-case-study aria-labelledby="project-heading">
+    <header className={styles.hero} id="keystone-overview" data-keystone-section="overview">
+      <div className={styles.heroTop}><div className={styles.brand}><span className={styles.logo} aria-hidden="true">K</span><span>KEYSTONE<small>AI PRODUCT CASE STUDY</small></span></div><span className={styles.status}>AI 产品负责人 · 个人项目<br />本地阶段验证 / 公网尚未开放</span></div>
+      <div className={styles.heroGrid}>
+        <div className={styles.heroCopy}><p className={styles.eyebrow}>01 / WHAT I BUILT</p><h1 id="project-heading" className={styles.heroTitle}>Keystone<br /><span>AI 研究工作台</span></h1><p className={styles.heroLead}>把多文档问答，变成有依据、可回查、能复用的研究成果。</p><p className={styles.role}>我负责问题定义、AI 工作流、交互与验收，<br />借助 Codex 推进从方案到本地闭环。</p></div>
+        <div className={styles.heroVisual}><div className={styles.device}><div className={styles.deviceBar} aria-hidden="true"><span /><span /><span /></div><CaseImage src="/images/projects/keystone/research-workspace-clear.png" alt="Keystone 真实研究工作台，包含研究问答、资料库、研究分析与简报入口" width={1919} height={814} priority sizes="(max-width:639px) 88vw, (max-width:1023px) 48vw, 600px" /></div><div className={styles.deviceBase} aria-hidden="true" /><p>真实产品界面 · 点击放大，不代表公网已上线</p></div>
+      </div>
+      <div className={styles.metrics} aria-label="三项有来源的阶段成果">
+        <div className={styles.metric}><span className={styles.metricValue}>10 次</span><span className={styles.metricLabel}>真实 DeepSeek 请求</span><span className={styles.metricNote}>含生成、规划与复核；隔离测试资料</span></div>
+        <div className={styles.metric}><span className={styles.metricValue}>19 处</span><span className={styles.metricLabel}>分析样本引用位置核对</span><span className={styles.metricNote}>来自 10 条结论，不是独立来源数</span></div>
+        <div className={styles.metric}><span className={styles.metricValue}>59 / 59</span><span className={styles.metricLabel}>旧成功问答幂等恢复</span><span className={styles.metricNote}>历史快照，不是新增调用或用户数</span></div>
       </div>
     </header>
+    <nav className={styles.chapterNav} aria-label="Keystone 案例章节">{chapters.map(([id, label], index) => <a href={"#keystone-" + id} key={id}><span>{String(index + 1).padStart(2, "0")}</span>{label}</a>)}</nav>
 
-    <ProductFramework label="PRODUCT STRATEGY / DECISIONS" title="从问题，到产品取舍" summary="从真实需求文档与制作记录中梳理三条主线：研究任务优先、证据先于结论、阶段交付可验收。" rows={[
-      { problem: "资料多、口径不同，研究需要逐份整理。", decision: "以项目为单位管理资料；分析按对象和维度组织，避免只返回一段泛化摘要。", evidence: "需求研究中的 JTBD、V1 PRD、研究分析表及其版本。"},
-      { problem: "回答看似完整，仍难判断是否有依据。", decision: "把结论、引用和原文位置作为同一条证据链；资料不足或冲突显式保留。", evidence: "引用抽屉、原文范围约束、冲突与资料不足测试。"},
-      { problem: "能生成内容，不代表能完成研究交付。", decision: "从问答延伸至分析、简报和导出，并分别定义验收条件。", evidence: "正式导出样本、中文 PDF 分页修复、阶段验收记录。"},
-    ]} validation="需求研究以桌面分析形成假设，用户访谈尚待补充；本地接口与有限样本验证不等同于公网发布或用户价值已经得到量化证明。" />
+    <Section id="problem" number="02" english="WHY KEYSTONE" title="先定义研究问题，再决定产品形态。">
+      <p className={styles.sectionIntro}>方向来自个人研究过程、产品反馈与验收失败记录，不是虚构的用户访谈。</p>
+      <div className={styles.problemMap} aria-label="问题、判断与设计目标的逻辑图"><div className={styles.mapHeader} aria-hidden="true"><span>观察到的问题</span><span>我的判断</span><span>设计目标</span></div>{keystoneProblems.map(item => <div className={styles.problemRow} key={item.problem}><div className={styles.problemCell}><strong>{item.problem}</strong><p>{item.detail}</p></div><div className={styles.judgmentCell}><strong>{item.judgment}</strong><p>{item.reason}</p></div><div className={styles.goalCell}><strong>{item.goal}</strong><p>{item.output}</p></div></div>)}</div>
+      <p className={styles.footnote}>优先级：先保证证据与范围，再补过程恢复和成果交付；真实用户价值仍待验证。<Source>E01–04</Source></p>
+    </Section>
 
-    <CaseSection id="keystone-product-framework" eyebrow="PRODUCT FRAMEWORK / 0 → 1" title="把研究任务，组织成产品框架">
-      <p className={styles.frameworkLead}>从用户目标，到核心业务流程，再到功能模块与底层支撑。下图为新提供的产品框架原图，用于说明产品设计范围；图中的价值是设计目标，各项实现与验收状态仍以分阶段记录为准。</p>
-      <CaseImage className={styles.frameworkImage} src={base + "research-workbench-framework.png"} alt="Keystone AI研究工作台产品框架图：用户目标、核心业务流程、功能模块、底层支撑与产品价值" width={1448} height={1086} caption="用户提供的原始产品框架图 · 不裁切，可打开原图核对" sizes="(max-width: 639px) 90vw, (max-width: 1023px) 86vw, 900px" />
-      <dl className={styles.frameworkSummary}><div><dt>用户目标</dt><dd>上传自己的资料，完成研究分析，形成可引用的研究结论。</dd></div><div><dt>业务闭环</dt><dd>新建项目、上传与解析、问答、分析表、简报、导出。</dd></div><div><dt>功能支撑</dt><dd>原文依据、历史与版本、引用校验、访客隔离和预算保护。</dd></div></dl>
-    </CaseSection>
-
-    <CaseSection id="keystone-zero-to-one" eyebrow="01 / FROM 0 TO 1" title="把制作过程，拆成七个产品阶段">
-      <p className={styles.lead}>每一步都回答一个产品问题，再落到具体交付与验收。以下路径依据实际需求研究、PRD、开发清单及 Codex 阶段记录整理。</p>
-      <ol className={styles.journey}>{keystoneJourney.map(step => <li key={step.stage}>
-        <span className={styles.stageNumber}>{step.stage}</span><div className={styles.stageBody}><h3>{step.title}</h3><p className={styles.stageQuestion}>{step.question}</p><p>{step.decision}</p><dl><div><dt>阶段产出</dt><dd>{step.output}</dd></div><div><dt>保留边界</dt><dd>{step.boundary}</dd></div></dl></div>
-      </li>)}</ol>
-    </CaseSection>
-
-    <CaseSection id="keystone-ai-workflow" eyebrow="02 / AI WORKFLOW DESIGN" title="设计一条可回查的证据链">
-      <p className={styles.note}>模型负责理解与生成，程序负责范围、结构和原文位置，用户保留确认权。三者分工，降低黑盒研究带来的不确定性。</p>
-      <ol className={styles.pipeline}>{pipeline.map(([title, text], index) => <li key={title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></li>)}</ol>
-      <div className={styles.failurePath}><strong>没有足够依据时</strong><span>无命中 / 缺失 / 冲突 → 保留提示与来源 → 补充资料或调整问题</span></div>
-      <div className={styles.responsibilities}>
-        <div><span>AI</span><h3>提出与生成</h3><p>理解问题、建议分析维度、基于给定原文生成主张与分析。</p></div>
-        <div><span>PROGRAM</span><h3>约束与校验</h3><p>文件解析、范围筛选、结构校验、引文匹配、版本保存和预算门禁。</p></div>
-        <div><span>HUMAN</span><h3>选择与判断</h3><p>确定目标、确认资料和维度、检查冲突与缺口，决定成果是否可用。</p></div>
+    <Section id="solution" number="03" english="PRODUCT STRATEGY & AI WORKFLOW" title="设计的不是聊天界面，而是一条证据工作流。">
+      <ol className={styles.flow} aria-label="六步研究业务链路">{keystoneFlow.map((item, index) => <li className={styles.flowStep} key={item.title}><span className={styles.flowIcon}><FlowSymbol index={index} /></span><span className={styles.flowActor}>{item.actor}</span><h3>{item.title}</h3><p>{item.text}</p></li>)}</ol>
+      <div className={styles.workflow} aria-label="人工、程序与DeepSeek的协作图">
+        <div className={styles.workflowRow}><strong className={styles.workflowLabel}>用户决策<small>保留采信权</small></strong><div className={styles.workflowItems}><span className={styles.workflowItem}>选择资料与片段</span><span className={styles.workflowItem}>确认对象与维度</span><span className={styles.workflowItem}>逐项查看 → 保存版本</span></div></div>
+        <div className={styles.workflowRow}><strong className={styles.workflowLabel}>程序约束<small>确定性任务</small></strong><div className={styles.workflowItems}><span className={styles.workflowItem}>关键词召回 / 范围归属</span><span className={styles.workflowItem}>结构与原文位置校验</span><span className={styles.workflowItem}>状态、版本与费用记录</span></div></div>
+        <div className={styles.workflowRow}><strong className={styles.workflowLabel}>DeepSeek<small>真实模型任务</small></strong><div className={styles.workflowItems}><span className={styles.workflowItem}>基于原文回答 / 规划</span><span className={styles.workflowItem}>按对象生成字段结果</span><span className={styles.workflowItem}>主张与引文支持度复核</span></div></div>
       </div>
-    </CaseSection>
+      <div className={styles.guardrail} aria-label="提示词与质量门禁"><div className={styles.guardrailItem}><strong>输入有边界</strong>问答最多 8 段原文、总计 18,000 字节；每字段限定允许来源。</div><div className={styles.guardrailItem}><strong>输出有结构</strong>主张 + 引用 + 不足状态；不能用常识填满空白。</div><div className={styles.guardrailItem}><strong>证据分层检查</strong>程序核位置，模型复核支持关系，人做最终确认。</div><div className={styles.guardrailItem}><strong>失败不隐身</strong>缺口、冲突和失败分开；记录费用，不自动重试。</div></div>
+      <p className={styles.footnote}>关键取舍：关键词检索不是向量检索；同一模型复核不是独立盲评；简报汇编已存结论，没有独立 AI 写作。<Source>E04 / E18</Source></p>
+    </Section>
 
-    <CaseSection id="keystone-iteration" eyebrow="03 / ITERATION & TRADE-OFFS" title="从反馈中，修正工作流">
-      <div className={styles.iterationList}>
-        <div><h3>研究范围需要可见</h3><p>把“查原文—选中依据—进入研究分析”连成路径，避免用户选过的资料在跨模块后丢失。</p><span>交付：选中范围约束与研究联动</span></div>
-        <div><h3>研究过程需要可恢复</h3><p>将对话与原文检索从临时页面状态改为持久记录，刷新后继续研究，并保留出处和历史版本。</p><span>交付：对话持久化与刷新恢复</span></div>
-        <div><h3>导出是产品交付的一部分</h3><p>根据验收修正中文 PDF 的引用跨页、长文件名换行和标题孤字；不靠删掉引用解决版面问题。</p><span>交付：正式 PDF 与分页复验</span></div>
+    <Section id="decisions" number="04" english="PRODUCT DECISIONS" title="三次关键调整，让产品判断落在流程里。">
+      <div className={styles.decisionList}>{keystoneDecisions.map(item => <article className={styles.decision} key={item.id} data-decision={item.id}><div className={styles.decisionHead}><span className={styles.decisionLetter}>{item.id}</span><h3>{item.title}</h3><small>{item.source}</small></div><div className={styles.compare}><div className={styles.compareBefore}><strong>改进前 · {item.issue}</strong>{item.before.map((step, index) => <span key={step}>{index > 0 ? "→ " : ""}{step}</span>)}</div><div className={styles.compareAfter}><strong>设计决策 · {item.decision}</strong>{item.after.map((step, index) => <span key={step}>{index > 0 ? "→ " : ""}{step}</span>)}</div></div><p className={styles.decisionReason}><strong>根因判断：</strong>{item.cause}</p><p className={styles.decisionResult}><strong>改进结果：</strong>{item.result}</p></article>)}</div>
+      <p className={styles.diagramLabel}>以上是依据真实记录整理的数据流对比，不是重绘的产品截图。<Source>E02–04 / E16–17</Source></p>
+    </Section>
+
+    <Section id="validation" number="05" english="VALIDATION" title="每个数字，都回答一个具体的验证问题。">
+      <p className={styles.sectionIntro}>2026/11/22，隔离副本与虚构资料上的一轮真实模型验收。以下是样本结果，不是生产准确率。</p>
+      <div className={styles.validationGrid}>
+        <figure className={styles.chart} data-keystone-chart="token" aria-labelledby="keystone-token-title"><h3 className={styles.chartTitle} id="keystone-token-title">调用用了多少 Token？</h3><div className={styles.tokenTrack} aria-hidden="true">{keystoneTokens.map(item => <span key={item.label} className={styles.tokenSegment} style={{ width: item.value / totalTokens * 100 + "%" }} data-value={item.value} />)}</div><ul className={styles.tokenLegend}>{keystoneTokens.map(item => <li key={item.label}><span className={styles.legendDot} aria-hidden="true" />{item.label}<strong>{item.value.toLocaleString("en-US")}</strong></li>)}</ul><figcaption className={styles.chartNote}>输入 11,334 + 输出 2,224，共 13,558 Token。缓存命中也计入输入。</figcaption></figure>
+        <figure className={styles.chart} data-keystone-chart="calls" aria-labelledby="keystone-calls-title"><h3 className={styles.chartTitle} id="keystone-calls-title">10 次请求分别做了什么？</h3><div className={styles.batchChart}>{keystoneCalls.map(item => <div className={styles.batchRow} key={item.label}><span>{item.label}</span><div aria-hidden="true"><i style={{ width: item.value / 3 * 100 + "%" }} /></div><strong className={styles.batchCount}>{item.value}</strong></div>)}</div><figcaption className={styles.chartNote}>生成与复核分别计次，不把 10 次请求包装成 10 个用户任务。</figcaption></figure>
+        <figure className={styles.chart} data-keystone-chart="finite" aria-labelledby="keystone-finite-title"><h3 className={styles.chartTitle} id="keystone-finite-title">没有依据的格子怎么办？</h3><div className={styles.qualityResult}><div><strong>3</strong><span>有结论</span><span aria-hidden="true"><i data-cell="answered" /><i data-cell="answered" /><i data-cell="answered" /></span></div><div><strong>3</strong><span>资料不足</span><span aria-hidden="true"><i data-cell="insufficient" /><i data-cell="insufficient" /><i data-cell="insufficient" /></span></div></div><p className={styles.chartNote}>3 个对象 × 2 个维度。空缺被保留，不以“全部填满”为目标。</p><figcaption className={styles.chartNote}><strong>10 条分析结论 → 19 处引用</strong><br />逐项核对文档、页码与原文位置；不据此声称语义永远正确。</figcaption></figure>
       </div>
-    </CaseSection>
+      <div className={styles.cost}><strong>¥0.018351 <small>该轮空闲价估算</small></strong><p>应用按高峰价保守计账 ¥0.036700。两者均为历史估算口径，供应商最终扣费未核实；费用与并发门禁不能代替供应商账单硬上限。</p></div>
+      <div className={styles.validationFacts}><div className={styles.fact}><strong>7 类基础格式</strong><span>文字 PDF / DOCX / PPTX / XLSX / UTF-8 TXT / MD / CSV，≤25 MB；无 OCR 保证。</span></div><div className={styles.fact}><strong>20 / 8 / 6 组本地专项</strong><span>分别为安全、预算、研究隔离；套件不相加，不等于公网安全审计。</span></div><div className={styles.fact}><strong>真实与 Mock 分开</strong><span>公网版研究隔离另有 10 次 Mock、0 次真实供应商调用，不与本轮相加。</span></div><div className={styles.fact}><strong>恢复与质量分开</strong><span>59 条是旧问答回填，不能推导新增模型质量、用户数或效率提升。</span></div></div>
+      <ol className={styles.timeline} aria-label="真实产品迭代时间线" data-keystone-timeline>{keystoneTimeline.map((item, index) => <li className={styles.timelineItem} key={item.date} data-state={index === keystoneTimeline.length - 1 ? "pending" : "recorded"}><span className={styles.timelineDot} aria-hidden="true" /><time>{item.date}</time><strong>{item.title}</strong><span>{item.note}</span></li>)}</ol>
+      <p className={styles.footnote}>时间线均为 2026 年阶段记录；最后一站是准备状态，非上线里程碑。<Source>E05–15</Source></p>
+    </Section>
 
-    <CaseSection id="keystone-validation" eyebrow="04 / VALIDATION" title="检查 AI 返回，也检查不该返回什么">
-      <p className={styles.note}>2026 年 11 月 22 日，在隔离测试资料上完成 10 次真实模型请求，覆盖以下路径。记录用于验证工作流与失败处理，不作为准确率或用户规模指标。</p>
-      <div className={styles.testTable}><table><caption className="sr-only">有限样本真实模型验收</caption><thead><tr><th>验证任务</th><th>请求数</th><th>观察与检查</th></tr></thead><tbody>{keystoneValidation.map(row => <tr key={row.task}><th scope="row">{row.task}</th><td>{row.calls}</td><td>{row.result}</td></tr>)}</tbody></table></div>
-      <p className={styles.validationLimit}>仍需继续验证：规划与支持度复核对证据充分性的判断、Word 导出的人工视觉检查，以及公网环境下的完整工作流。有限样本通过不代表模型核验始终正确，也不代表产品全部完成。</p>
-    </CaseSection>
-
-    <CaseSection id="keystone-output" eyebrow="05 / DELIVERY" title="让研究结果，形成正式交付">
-      <div className={styles.outputGrid}>
-        <CaseImage src={base + "brief-page-1.png"} alt="Keystone 真实研究简报第1页，包含结论与编号来源" width={849} height={1200} caption="已有正式导出样本 · 完整第1页" sizes="(max-width: 639px) 90vw, 45vw" />
-        <div className={styles.outputCopy}><span>FROM EVIDENCE TO DELIVERABLE</span><h3>保留结论，<br />也保留来路。</h3><p>简报承接研究问题、结论与来源，让结果能继续编辑、核对和交付。现有文件展示真实输出，不补造新的产品界面。</p><ul><li>目标：让回答进入后续分析与交付</li><li>方案：统一研究内容、来源与版本关系</li><li>验收：检查导出结构、中文排版与引用对应</li></ul><a href={assetPath(base + "research-brief.pdf")} target="_blank" rel="noreferrer">查看原始导出样本 ↗ <small>PDF · 已提供版本</small></a></div>
-      </div>
-    </CaseSection>
-
-    <CaseSection id="keystone-artifacts" eyebrow="06 / PROCESS MATERIALS" title="制作依据与后续迭代">
-      <div className={styles.artifactLinks}><a href={assetPath(base + "product-requirements.pdf")} target="_blank" rel="noreferrer">产品需求文档 ↗<span>定位、流程、能力边界与阶段范围</span></a><div><strong>实际制作记录</strong><span>需求研究 → 竞品分析 → PRD → 分阶段开发 → 功能整合 → AI 验证 → 发布准备</span></div></div>
-      <details className={styles.archive}><summary>查看界面材料与后续补充项</summary><div className={styles.pendingGrid}><PendingMaterial title="更完整的过程界面" note="后续补充资料库、研究分析表、原文核验与结果编辑的清晰真实截图；现有工作台已在封面展示。" /><PendingMaterial title="用户价值验证" note="继续补充目标用户访谈、真实研究任务与可用性观察，不以接口测试替代用户验证。" /></div></details>
-    </CaseSection>
-
-    <section className={styles.conclusion} aria-labelledby="keystone-conclusion"><span>CURRENT STATE / NEXT STEP</span><h2 id="keystone-conclusion">从可运行的闭环，走向可公开使用的产品。</h2><p>个人项目已积累本地核心流程与阶段验收证据，公网版本仍处于发布准备阶段。开放前还需验证云端工作流、访客隔离与失败恢复，完成数据自动清理及完整删除能力，并补齐 Word 导出的人工视觉检查。</p></section>
+    <Section id="reflection" number="06" english="MY CONTRIBUTION & REFLECTION" title="我的工作，是定义判断与交付的边界。">
+      <div className={styles.contribution}><div className={styles.contributionItem}><span>01</span><h3>定义问题与优先级</h3><p>证据、过程恢复和交付优先于功能数量。</p></div><div className={styles.contributionItem}><span>02</span><h3>设计 AI 协作机制</h3><p>限定上下文、结构化输出、缺口与确认门禁。</p></div><div className={styles.contributionItem}><span>03</span><h3>推进实现与迭代</h3><p>借助 Codex 把范围联动、状态与版本落实。</p></div><div className={styles.contributionItem}><span>04</span><h3>建立验证与风险标准</h3><p>分开真实/Mock、位置/语义、估算/实账。</p></div></div>
+      <div className={styles.reflection}><div className={styles.reflectionMain}><h3>目前解决到哪里？</h3><p>本地证据链与阶段验收已有记录，真实用户价值仍待验证。截至 2026/11/24，云资源与空库已准备，但 Worker 尚未部署、访问保护未核验，入口关闭。</p><p>自动清理、永久删除和 Word 人工视觉验收仍待完成；匿名空间不是登录账号，清 Cookie 或换浏览器不能自动找回。</p></div><div className={styles.reflectionNext}><h3>下一步，按什么顺序做？</h3><ol><li>先补云端完整流程与数据生命周期，再开放访问。</li><li>扩大冲突、缺口和检索漏召回难例，分别评位置与语义。</li><li>用真实研究任务观察查证、修正与成果复用，再决定自动化投入。</li></ol></div></div>
+      <details className={styles.sources} id="keystone-sources"><summary>查看数据来源与验证边界</summary><p className={styles.footnote}>依据已核实的源码、提交与历史验收整理。未重跑产品或调用模型，不公开原始资料、请求响应及私人论文。</p><div className={styles.sourceTable} role="region" aria-label="证据摘要，可横向滚动" tabIndex={0}><table><thead><tr><th>证据</th><th>来源记录</th><th>适用范围</th></tr></thead><tbody>{keystonePublicEvidence.map(item => <tr key={item.id}><th scope="row">{item.id}</th><td>{item.record}</td><td>{item.scope}</td></tr>)}</tbody></table></div></details>
+    </Section>
   </article>;
 }

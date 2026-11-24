@@ -1,20 +1,58 @@
-// Curated from the actual product documents and Codex delivery records.
-// Historical test evidence is not a claim of production or user-wide success.
-export const keystoneJourney = [
-  { stage: "01", title: "需求研究：先确定谁在完成什么任务", question: "为什么不只做一个 PDF 聊天工具？", decision: "从研究密集型知识工作出发，用 JTBD 拆解事实查证、跨文档比较和研究交付；优先聚焦竞品与行业研究。", output: "需求研究 / 用户分层 / 痛点假设", boundary: "采用桌面研究与竞品反推，目标用户访谈仍待开展。" },
-  { stage: "02", title: "竞品与定位：把证据作为差异化主线", question: "资料理解、企业搜索与专业分析之间，机会在哪里？", decision: "比较资料工作台、企业搜索、研究 Agent 和专业分析工具，收敛为“可回到原文的多文档研究助手”。", output: "竞品能力矩阵 / 产品定位 / V1 PRD", boundary: "竞品判断为当时产品研究结论，不等同于需求已验证。" },
-  { stage: "03", title: "MVP 划分：先跑通一条可核验的闭环", question: "第一版必须做什么，什么可以延后？", decision: "按依赖顺序推进界面骨架、真实上传与解析、带引用问答、研究分析、简报交付；演示数据和真实模型输出分开标识。", output: "分阶段开发任务 / 状态与验收标准", boundary: "联网研究、企业治理和完整多轮能力未被直接视为全部完成。" },
-  { stage: "04", title: "工作流设计：让研究范围由人控制", question: "模型应该看哪些资料，又该按什么维度分析？", decision: "连接研究问答、原文检索、选中依据、研究分析与简报；由用户确认资料和分析维度，保留历史与版本。", output: "原文范围约束 / 研究分析表 / 引用抽屉", boundary: "模型建议不能绕过人工确认，也不能把缺少证据的格子自动填满。" },
-  { stage: "05", title: "AI 协作开发：把需求拆成可检查的交付", question: "如何让 Codex 的实现始终对应产品目标？", decision: "用需求、任务、验收三层清单推进开发；在隔离分支中整合对话持久化、引用回查、分析联动与中文导出，再回归后合入。", output: "增量迭代 / 功能整合记录 / 回归与导出材料", boundary: "保留已有资料与成果，不以演示通过替代真实流程验证。" },
-  { stage: "06", title: "验证与修正：检查答案，也检查失败路径", question: "API 返回结果，是否就意味着研究结果可用？", decision: "以普通问答、资料冲突、资料不足和限定原文分析设计小样本测试；逐条核对结论与原文位置，并修正 PDF 分页等交付问题。", output: "10 次真实模型请求验收 / 冲突与缺口检查 / PDF 复验", boundary: "这是隔离数据上的有限样本验收，不是准确率统计或真实用户实验。Word 视觉检查仍待人工确认。" },
-  { stage: "07", title: "发布准备：把本地可用与公网可用分开", question: "让陌生访问者使用，还需要补上什么？", decision: "另建公网版本，增加访客工作区隔离、归属校验、上传任务恢复、预算与并发保护，先做本地验收，再准备云端发布。", output: "公网 P1.5 本地验收 / 首次部署手册", boundary: "公网尚未正式发布；云端运行、HTTPS与外网待验证；数据自动清理及项目／工作区永久删除仍需开发与验收。" },
+// Public aggregates from reviewed historical records. Exact source index stays in ignored artifacts/.
+export const keystoneProblems = [
+  { problem: "资料分散，研究会断", detail: "文件、检索与答案各自存在。", judgment: "研究过程需要稳定载体", reason: "刷新后仍要保留当时的范围与依据。", goal: "项目化研究空间", output: "资料、对话和成果共用一个上下文。" },
+  { problem: "有答案，不代表有依据", detail: "引用编号也可能掩盖冲突。", judgment: "依据应先于生成结论", reason: "需要区分位置匹配与语义支持。", goal: "可回查的证据链", output: "逐条引用、缺口保留与人工确认。" },
+  { problem: "聊天难以成为交付物", detail: "长段回答不便比较和复用。", judgment: "研究结果需要统一结构", reason: "对象、维度与版本必须明确。", goal: "结构化研究成果", output: "分析表 → 正式版本 → 研究简报。" },
 ] as const;
 
-export const keystoneValidation = [
-  { task: "普通问答与引用", calls: "2", result: "回答对应真实解析原文，检查引用支持关系。" },
-  { task: "资料冲突", calls: "2", result: "保留冲突值及双端引用，不擅自选择一个答案。" },
-  { task: "资料不足", calls: "1", result: "缺少交付周期时保留缺口，不编造天数。" },
-  { task: "选中原文规划", calls: "1", result: "按指定对象和维度规划，不扩大资料范围。" },
-  { task: "多对象分析生成", calls: "3", result: "按对象分别生成，仅引用各自选定的材料。" },
-  { task: "整体结论与引用核对", calls: "1", result: "逐条检查结论、文档、页码与引文位置。" },
+export const keystoneFlow = [
+  { title: "上传资料", actor: "用户 + 程序", text: "归入项目，保留文档版本。" },
+  { title: "解析与检索", actor: "程序", text: "提取文本，关键词召回原文。" },
+  { title: "问答与规划", actor: "DeepSeek + 用户", text: "基于原文回答，确认分析维度。" },
+  { title: "结构化分析", actor: "DeepSeek", text: "按对象生成，字段限定来源。" },
+  { title: "引用核验", actor: "程序 + 模型 + 用户", text: "核对位置与支持关系。" },
+  { title: "简报与保存", actor: "程序 + 用户", text: "汇编已存结论，编辑和导出。" },
+] as const;
+
+export const keystoneDecisions = [
+  { id: "A", title: "把一次检索，变成可恢复的研究过程", issue: "刷新后，检索结果丢失。", cause: "结果停留在页面内存，旧历史又依赖模型状态。",
+    before: ["页面内存", "刷新", "检索丢失"], after: ["项目对话", "持久化", "状态恢复"],
+    decision: "将研究恢复与模型调用解耦，问题、范围、状态与引用一起保存。",
+    result: "59/59 条符合条件的旧成功问答幂等回填；未落库的旧检索不能追回。", source: "E02 · 71ce6d7" },
+  { id: "B", title: "让用户选中的依据，真正约束生成", issue: "原文勾选与后续分析脱节。", cause: "范围跨越规划、草稿和生成，不能只依赖界面选中态。",
+    before: ["原文勾选", "跨模块", "边界不清"], after: ["选中依据", "写入草稿", "服务端校验", "对象范围交集"],
+    decision: "把 evidenceContext 贯穿规划与生成；没有覆盖就保留缺口，不扩大范围猜测。",
+    result: "本地 12 条命中选 1 条入草稿并可恢复；Mock 断言范围外依据不进请求。", source: "E03–04 · a2a9a62" },
+  { id: "C", title: "面对缺口和冲突，不替用户选一个答案", issue: "模型可能并列确定值与冲突，误导阅读。", cause: "有引用不代表覆盖冲突两端，同模型复核也可能误放行。",
+    before: ["有引用", "单端值与冲突并存"], after: ["缺口保留", "双端引用", "逐项确认", "版本保存"],
+    decision: "要求冲突两端证据，保守隐藏单端附加主张；不足、失败与已查看分开。",
+    result: "历史真实复测保留双端冲突；位置核对与结构断言分别验证，不推导准确率。", source: "E16–17 · 269906d" },
+] as const;
+
+export const keystoneTokens = [
+  { label: "输入 · 缓存命中", value: 1920 },
+  { label: "输入 · 未命中", value: 9414 },
+  { label: "模型输出", value: 2224 },
+] as const;
+
+export const keystoneCalls = [
+  { label: "研究回答", value: 3 }, { label: "支持度复核", value: 2 }, { label: "研究规划", value: 1 },
+  { label: "对象分析", value: 3 }, { label: "整体检查", value: 1 },
+] as const;
+
+export const keystoneTimeline = [
+  { date: "10 / 05", title: "规划与确认", note: "固定字段 → 共享维度" },
+  { date: "11 / 20", title: "过程整合", note: "持久化 + 范围联动" },
+  { date: "11 / 22", title: "真实模型验收", note: "10 次隔离请求" },
+  { date: "11 / 23", title: "访客隔离", note: "本地权限与预算验收" },
+  { date: "11 / 24", title: "公网准备中", note: "入口关闭 · 尚未部署" },
+] as const;
+
+export const keystonePublicEvidence = [
+  { id: "E01", record: "10/05 · 产品反馈与规划记录", scope: "个人工作流观察，未做外部访谈或问卷。" },
+  { id: "E02–04", record: "11/20 · 对话持久化与范围联动", scope: "59 条历史回填、本地检索及 Mock 协议验证。" },
+  { id: "E05–08", record: "11/22 · DeepSeek 隔离验收报告与调用元数据", scope: "10 次真实请求；输入 11,334 / 输出 2,224 Token。10 条分析结论含 19 处引用。" },
+  { id: "E09–12", record: "解析源码与 P1.5 本地专项", scope: "7 类基础格式；20 / 8 / 6 分别为安全、预算、研究隔离，套件不相加。" },
+  { id: "E13–15", record: "11/24 · 最新 P2.3 工作区记录", scope: "云资源与空库已准备；Worker 未部署、Access 未核验、入口关闭。P2 文档未提交。" },
+  { id: "E16–18", record: "冲突、版本门禁与简报汇编源码", scope: "同模型复核不是独立盲评；简报无独立 AI 写作，人工改写不自动复核语义。" },
 ] as const;

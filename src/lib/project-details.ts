@@ -33,8 +33,8 @@ export const projectDetails: Record<string, ProjectDetailContent> = {
     classification: "AI 多文档研究助手 · 个人项目",
     role: "AI 产品负责人（个人项目）",
     focus: "AI 工作流设计 / 需求与范围管理 / AI 协作开发",
-    status: "开发迭代中 · 公网发布准备阶段",
-    scopeNote: "依据实际 Codex 制作记录与阶段验收材料呈现从需求研究到本地产品验证的路径。局部测试结果不代表完成全部用户验证；公网尚未正式发布，保留 Word 视觉检查、云端验证等未完成项。",
+    status: "本地验证与公网准备 · 尚未开放",
+    scopeNote: "依据真实源码、提交与历史验收记录呈现 AI 产品决策。本轮只读审阅，未调用模型；真实模型、Mock、本地恢复与公网准备分别说明。截至 2026/11/24 尚未完成公网部署、访问保护及云端完整流程，用户价值与部分交付验收仍待验证。",
   },
   liaoning: {
     classification: "地域文化内容产品 · 数字档案网站",
