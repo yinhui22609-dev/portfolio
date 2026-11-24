@@ -31,7 +31,7 @@ export function Portfolio({ projects }: { projects: Project[] }) {
               <HelixTitle />
               <Cross className="type-cross-right" />
             </div>
-            <div className="hero-baseline"><span>产品设计 · 界面设计 · 数字体验</span><span className="hero-manifesto">让复杂变得清晰，让体验留有温度。</span><a href="#work" className="explore-link">向下探索 <span className="scroll-line" aria-hidden="true" /></a></div>
+            <div className="hero-baseline"><span>产品策略 · 用户研究 · AI 产品</span><span className="hero-manifesto">以产品思维连接用户需求、技术与设计。</span><a href="#work" className="explore-link">向下探索 <span className="scroll-line" aria-hidden="true" /></a></div>
             <RadialPortfolio projects={projects} renderArtwork={(project) => <ProjectArtwork project={project} />} />
           </section>
 

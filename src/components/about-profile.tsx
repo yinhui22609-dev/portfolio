@@ -17,7 +17,7 @@ export function AboutProfile({ standalone = false }: { standalone?: boolean }) {
             <span className={styles.titleOutline} aria-hidden="true">ABOUT ME</span>
             <Heading id="about-title" className={styles.title}>ABOUT ME</Heading>
           </div>
-          <p className={styles.bio}>{profile.bio}</p>
+          <div className={styles.bio}>{profile.bio.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
           <section className={styles.contactSection} aria-labelledby="contact-title">
             <h3 id="contact-title" className={styles.sectionTitle}>CONTACT</h3>
             <dl className={styles.contact}>
